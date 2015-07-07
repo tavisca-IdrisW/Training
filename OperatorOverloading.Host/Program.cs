@@ -1,11 +1,8 @@
 ﻿using System;
-using OperatorOverloadingModel;
+using OperatorOverloading.Model;
 
 namespace OperatorOverloading.Host
 {
-    /**
-     * MainClass Contains Main Method.
-     */
     public class MainClass
     {
         public static void Main(string[] args)
@@ -16,7 +13,6 @@ namespace OperatorOverloading.Host
                 Money Amount1 = new Money(Console.ReadLine());
                 Console.Write("Enter Amount 2 (<Amt> CType): ");
                 Money Amount2 = new Money(Console.ReadLine());
-                //Money TotalAmount = Amount1 + Amount2;
 
                 Console.Write("The Total Amount is: ");
                 Console.Write(Amount1 + Amount2);
@@ -27,7 +23,7 @@ namespace OperatorOverloading.Host
             catch (Exception e)
             {
                 Console.WriteLine("Exception Occured.");
-                Console.WriteLine(e.StackTrace);
+                Console.WriteLine(e.Message);
             }
             
                 //Finally Added to atleast display the Exception.
