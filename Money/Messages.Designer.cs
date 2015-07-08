@@ -97,11 +97,29 @@ namespace OperatorOverloading.Model {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &quot;InvalidInput: Input Should be of type &lt;Amt&gt; &lt;Curr&gt;&quot;.
+        /// </summary>
+        internal static string InvalidInput {
+            get {
+                return ResourceManager.GetString("InvalidInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &quot;MismatchedCurrency: Please Enter Currency of the Same Type!!&quot;.
         /// </summary>
         internal static string MismatchedCurrency {
             get {
                 return ResourceManager.GetString("MismatchedCurrency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;Null Value in not Allowed.&quot;.
+        /// </summary>
+        internal static string NullValue {
+            get {
+                return ResourceManager.GetString("NullValue", resourceCulture);
             }
         }
     }

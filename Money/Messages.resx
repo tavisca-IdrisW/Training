@@ -129,7 +129,13 @@
   <data name="InvalidCurrency" xml:space="preserve">
     <value>"InvalidCurrency: Input Currency Cannot be NULL."</value>
   </data>
+  <data name="InvalidInput" xml:space="preserve">
+    <value>"InvalidInput: Input Should be of type &lt;Amt&gt; &lt;Curr&gt;"</value>
+  </data>
   <data name="MismatchedCurrency" xml:space="preserve">
     <value>"MismatchedCurrency: Please Enter Currency of the Same Type!!"</value>
+  </data>
+  <data name="NullValue" xml:space="preserve">
+    <value>"Null Value in not Allowed."</value>
   </data>
 </root>

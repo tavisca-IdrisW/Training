@@ -18,9 +18,6 @@ namespace OperatorOverloading.Host
 
                 Console.Write("The Total Amount is: ");
                 Console.Write(amount1 + amount2);
-
-
-                Console.ReadLine();
             }
 
             catch (Exception e)
@@ -28,12 +25,7 @@ namespace OperatorOverloading.Host
                 Console.WriteLine("Exception Occured.");
                 Console.WriteLine(e.Message);
             }
-            
-                //Finally Added to atleast display the Exception.
-            finally 
-            {
-                Console.ReadLine();
-            }
+            Console.ReadLine();
         }
     }
 }

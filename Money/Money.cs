@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Runtime.Serialization;
-
 
 namespace OperatorOverloading.Model
 {
     public class Money
     {
         private double _amount;
-        private String _currency;
+        private string _currency;
 
         public double Amount
         {
@@ -20,7 +18,7 @@ namespace OperatorOverloading.Model
                 }
                 if (double.IsPositiveInfinity(value))
                 {
-                    throw new InvalidCurrencyException(Messages.AmountTooLarge);                    
+                    throw new InvalidCurrencyException(Messages.AmountTooLarge);
                 }
                 _amount = value;
             }
@@ -50,7 +48,18 @@ namespace OperatorOverloading.Model
             string[] amountArr;
             double amt;
 
+            if (string.IsNullOrEmpty(inputAmount))
+            {
+                throw new InvalidCurrencyException(Messages.NullValue);
+            }
+
             amountArr = inputAmount.Split(' ');
+
+            if (amountArr.Length != 2)
+            {
+                throw new InvalidCurrencyException(Messages.InvalidInput);
+            }
+
             Currency = amountArr[1];
 
             if (double.TryParse(amountArr[0], out amt))
@@ -67,13 +76,13 @@ namespace OperatorOverloading.Model
         {
             if (obj1._currency.Equals(obj2._currency, StringComparison.CurrentCultureIgnoreCase))
             {
-                double totalAmount = obj1._amount + obj2._amount;
+                double totalAmount = obj1.Amount + obj2.Amount;
 
                 if (double.IsPositiveInfinity(totalAmount))
                 {
                     throw new InvalidCurrencyException(Messages.AmountTooLarge);
                 }
-                return new Money(totalAmount, obj1._currency);
+                return new Money(totalAmount, obj1.Currency);
             }
             else
             {
@@ -84,25 +93,6 @@ namespace OperatorOverloading.Model
         public override string ToString()
         {
             return Amount + " " + Currency;
-        }
-    }
-
-    public class InvalidCurrencyException : Exception, ISerializable
-    {
-        public InvalidCurrencyException()
-        {
-        }
-        public InvalidCurrencyException(string message)
-            : base(message)
-        {
-        }
-        public InvalidCurrencyException(string message, Exception inner)
-            : base(message, inner)
-        {
-        }
-        protected InvalidCurrencyException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
         }
     }
 }
