@@ -48,7 +48,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Money\OperatorOverloading.Model.csproj">
+    <ProjectReference Include="..\OperatorOverloading.Model\OperatorOverloading.Model.csproj">
       <Project>{83dbe735-a2a9-45e7-bb7c-ccafd5e13bd2}</Project>
       <Name>OperatorOverloading.Model</Name>
     </ProjectReference>

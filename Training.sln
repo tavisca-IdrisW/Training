@@ -5,9 +5,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 OperatorOverloading", "0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 WebServer", "04 WebServer", "{ED408C9E-EF5C-4379-A66D-235508AC9073}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverloading.Host", "OperatorOverloading.Host\OperatorOverloading.Host.csproj", "{2326F64C-97E2-45C0-8D6B-16E339B11105}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverloading.Host", "01 OperatorOverloading\OperatorOverloading.Host\OperatorOverloading.Host.csproj", "{2326F64C-97E2-45C0-8D6B-16E339B11105}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverloading.Model", "Money\OperatorOverloading.Model.csproj", "{83DBE735-A2A9-45E7-BB7C-CCAFD5E13BD2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverloading.Model", "01 OperatorOverloading\OperatorOverloading.Model\OperatorOverloading.Model.csproj", "{83DBE735-A2A9-45E7-BB7C-CCAFD5E13BD2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
