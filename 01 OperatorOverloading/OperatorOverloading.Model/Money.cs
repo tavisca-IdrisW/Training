@@ -37,10 +37,10 @@ namespace OperatorOverloading.Model
             }
         }
 
-        public Money(double amount, string cur)
+        public Money(double amount, string currency)
         {
             Amount = amount;
-            Currency = cur;
+            Currency = currency;
         }
 
         public Money(string inputAmount)
@@ -77,7 +77,7 @@ namespace OperatorOverloading.Model
             {
                 throw new InvalidCurrencyException(Messages.NullValue);
             }
-            if (obj1._currency.Equals(obj2._currency, StringComparison.CurrentCultureIgnoreCase))
+            if (obj1.Currency.Equals(obj2.Currency, StringComparison.CurrentCultureIgnoreCase))
             {
                 double totalAmount = obj1.Amount + obj2.Amount;
                 return new Money(totalAmount, obj1.Currency);
