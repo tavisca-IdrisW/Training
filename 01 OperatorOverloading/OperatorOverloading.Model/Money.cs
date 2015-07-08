@@ -29,7 +29,7 @@ namespace OperatorOverloading.Model
             get { return _currency; }
             private set
             {
-                if (string.IsNullOrEmpty(value))
+                if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new InvalidCurrencyException(Messages.InvalidCurrency);
                 }
@@ -37,23 +37,22 @@ namespace OperatorOverloading.Model
             }
         }
 
-        public Money(double amt, string cur)
+        public Money(double amount, string cur)
         {
-            Amount = amt;
+            Amount = amount;
             Currency = cur;
         }
 
         public Money(string inputAmount)
         {
-            string[] amountArr;
-            double amt;
 
-            if (string.IsNullOrEmpty(inputAmount))
+            if (string.IsNullOrWhiteSpace(inputAmount))
             {
                 throw new InvalidCurrencyException(Messages.NullValue);
             }
 
-            amountArr = inputAmount.Split(' ');
+            var amountArr = inputAmount.Split(' ');
+            double amount;
 
             if (amountArr.Length != 2)
             {
@@ -62,9 +61,9 @@ namespace OperatorOverloading.Model
 
             Currency = amountArr[1];
 
-            if (double.TryParse(amountArr[0], out amt))
+            if (double.TryParse(amountArr[0], out amount))
             {
-                Amount = amt;
+                Amount = amount;
             }
             else
             {
