@@ -3,6 +3,7 @@ using System.Runtime.Serialization;
 
 namespace OperatorOverloading.Model
 {
+    [Serializable]
     public class InvalidCurrencyException : Exception
     {
         public InvalidCurrencyException()
