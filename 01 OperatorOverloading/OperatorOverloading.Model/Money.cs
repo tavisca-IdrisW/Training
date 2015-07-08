@@ -59,8 +59,6 @@ namespace OperatorOverloading.Model
                 throw new InvalidCurrencyException(Messages.InvalidInput);
             }
 
-            Currency = amountArr[1];
-
             if (double.TryParse(amountArr[0], out amount))
             {
                 Amount = amount;
@@ -69,6 +67,8 @@ namespace OperatorOverloading.Model
             {
                 throw new InvalidCurrencyException(Messages.InvalidAmount);
             }
+
+            Currency = amountArr[1];
         }
 
         public static Money operator +(Money obj1, Money obj2)
