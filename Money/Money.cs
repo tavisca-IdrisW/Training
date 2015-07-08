@@ -6,16 +6,43 @@ namespace OperatorOverloading.Model
 {
     public class Money
     {
-        private double _amount { get; set; }
-        private String _currency { get; set; }
+        private double _amount;
+        private String _currency;
 
-        public Money()
-        { }
+        public double Amount
+        {
+            get { return _amount; }
+            private set
+            {
+                if (value < 0)
+                {
+                    throw new InvalidCurrencyException(Messages.AmountNegative);
+                }
+                if (double.IsPositiveInfinity(value))
+                {
+                    throw new InvalidCurrencyException(Messages.AmountTooLarge);                    
+                }
+                _amount = value;
+            }
+        }
+
+        public string Currency
+        {
+            get { return _currency; }
+            private set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new InvalidCurrencyException(Messages.InvalidCurrency);
+                }
+                _currency = value;
+            }
+        }
 
         public Money(double amt, string cur)
         {
-            _amount = amt;
-            _currency = cur;
+            Amount = amt;
+            Currency = cur;
         }
 
         public Money(string inputAmount)
@@ -23,74 +50,40 @@ namespace OperatorOverloading.Model
             string[] amountArr;
             double amt;
 
-            if (String.IsNullOrEmpty(inputAmount))
-            {
-                throw new InvalidCurrencyException("InvalidCurrency: Input Currency Cannot be NULL.");
-            }
             amountArr = inputAmount.Split(' ');
-            _currency = amountArr[1];
+            Currency = amountArr[1];
 
             if (double.TryParse(amountArr[0], out amt))
             {
-                if (amt > 0 && amt < double.MaxValue)
-                {
-                    _amount = amt;
-                }
-                else
-                {
-                    throw new InvalidCurrencyException("InvalidCurrency: Please Enter Proper Currency Values.");
-                }
+                Amount = amt;
             }
             else
             {
-                throw new InvalidCurrencyException("InvalidCurrency: Please Enter Proper Currency Values.");
+                throw new InvalidCurrencyException(Messages.InvalidAmount);
             }
-
-
         }
 
         public static Money operator +(Money obj1, Money obj2)
         {
             if (obj1._currency.Equals(obj2._currency, StringComparison.CurrentCultureIgnoreCase))
             {
-                Double TotalAmount = obj1._amount + obj2._amount;
+                double totalAmount = obj1._amount + obj2._amount;
 
-                if(TotalAmount > double.MaxValue)
+                if (double.IsPositiveInfinity(totalAmount))
                 {
-                    throw new InvalidCurrencyException("InvalidCurrency: Result is too large.");
+                    throw new InvalidCurrencyException(Messages.AmountTooLarge);
                 }
-                return new Money(TotalAmount, obj1._currency);
+                return new Money(totalAmount, obj1._currency);
             }
             else
             {
-                throw new CurrencyMismatchException("CurrencyTypeMismatch: Please Enter Currency of the Same Type!!");
+                throw new InvalidCurrencyException(Messages.MismatchedCurrency);
             }
         }
 
         public override string ToString()
         {
-            return _amount + " " + _currency;
-        }
-    }
-
-
-    public class CurrencyMismatchException : Exception, ISerializable
-    {
-        public CurrencyMismatchException()
-        {
-        }
-        public CurrencyMismatchException(string message)
-            : base(message)
-        {
-        }
-        public CurrencyMismatchException(string message, Exception inner)
-            : base(message, inner)
-        {
-        }
-
-        protected CurrencyMismatchException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
+            return Amount + " " + Currency;
         }
     }
 
@@ -107,7 +100,6 @@ namespace OperatorOverloading.Model
             : base(message, inner)
         {
         }
-
         protected InvalidCurrencyException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {

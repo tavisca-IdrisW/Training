@@ -10,12 +10,15 @@ namespace OperatorOverloading.Host
             try
             {
                 Console.Write("Enter Amount 1 (<Amt> CType): ");
-                Money Amount1 = new Money(Console.ReadLine());
+
+                Money amount1 = new Money(Console.ReadLine());
+
                 Console.Write("Enter Amount 2 (<Amt> CType): ");
-                Money Amount2 = new Money(Console.ReadLine());
+                Money amount2 = new Money(Console.ReadLine());
 
                 Console.Write("The Total Amount is: ");
-                Console.Write(Amount1 + Amount2);
+                Console.Write(amount1 + amount2);
+
 
                 Console.ReadLine();
             }
