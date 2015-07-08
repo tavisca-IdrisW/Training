@@ -74,14 +74,13 @@ namespace OperatorOverloading.Model
 
         public static Money operator +(Money obj1, Money obj2)
         {
+            if (obj1 == null || obj2 == null)
+            {
+                throw new InvalidCurrencyException(Messages.NullValue);
+            }
             if (obj1._currency.Equals(obj2._currency, StringComparison.CurrentCultureIgnoreCase))
             {
                 double totalAmount = obj1.Amount + obj2.Amount;
-
-                if (double.IsPositiveInfinity(totalAmount))
-                {
-                    throw new InvalidCurrencyException(Messages.AmountTooLarge);
-                }
                 return new Money(totalAmount, obj1.Currency);
             }
             else
