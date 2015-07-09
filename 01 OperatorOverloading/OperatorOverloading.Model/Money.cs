@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net;
+using OperatorOverloading.dbl;
 
 namespace OperatorOverloading.Model
 {
@@ -90,7 +92,14 @@ namespace OperatorOverloading.Model
 
         public override string ToString()
         {
-            return Amount + " " + Currency;
+            return Amount + " " + Currency.ToUpper() ;
+        }
+
+        public Money Convert(string convertTo)
+        {
+            double result;
+            result = new JSONParse().Conversion(Currency, convertTo);
+            return new Money(result*Amount, convertTo);
         }
     }
 }

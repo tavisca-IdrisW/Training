@@ -10,14 +10,18 @@ namespace OperatorOverloading.Host
             try
             {
                 Console.Write("Enter Amount 1 (<Amt> CType): ");
-
                 Money amount1 = new Money(Console.ReadLine());
 
-                Console.Write("Enter Amount 2 (<Amt> CType): ");
-                Money amount2 = new Money(Console.ReadLine());
+                Console.Write("Enter Currency to Convert to: ");
+                //Money amount2 = new Money(Console.ReadLine());
+                string convertTo = Console.ReadLine();
 
-                Console.Write("The Total Amount is: ");
-                Console.Write(amount1 + amount2);
+                Money convertedAmount = amount1.Convert(convertTo);
+
+                Console.WriteLine("The Converted Amount is: " + convertedAmount);
+
+                //Console.Write("The Total Amount is: ");
+                //Console.Write(amount1 + amount2);
             }
 
             catch (Exception e)
