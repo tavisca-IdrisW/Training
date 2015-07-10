@@ -97,11 +97,29 @@ namespace OperatorOverloading.dbl {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &quot;InvalidData:The source file must be in JSON format or path is invalid.&quot;.
+        /// </summary>
+        internal static string NotJson {
+            get {
+                return ResourceManager.GetString("NotJson", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &quot;InvalidInputs: Input Values cannot be NULL!!&quot;.
         /// </summary>
         internal static string NullInputs {
             get {
                 return ResourceManager.GetString("NullInputs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to InvalidPath: Path cannot be NULL..
+        /// </summary>
+        internal static string NullPath {
+            get {
+                return ResourceManager.GetString("NullPath", resourceCulture);
             }
         }
         

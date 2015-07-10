@@ -39,12 +39,21 @@ namespace OperatorOverloading.Model
             }
         }
 
+        /// <summary>
+        /// Accepts Amount in double and a string for Currency Type.
+        /// </summary>
+        /// <param name="amount"></param>
+        /// <param name="currency"></param>
         public Money(double amount, string currency)
         {
             Amount = amount;
             Currency = currency;
         }
 
+        /// <summary>
+        /// Accepts a single input string in teh form "Amount Currency"
+        /// </summary>
+        /// <param name="inputAmount"></param>
         public Money(string inputAmount)
         {
 
@@ -79,27 +88,50 @@ namespace OperatorOverloading.Model
             {
                 throw new InvalidCurrencyException(Messages.NullValue);
             }
+
             if (obj1.Currency.Equals(obj2.Currency, StringComparison.CurrentCultureIgnoreCase))
             {
                 double totalAmount = obj1.Amount + obj2.Amount;
                 return new Money(totalAmount, obj1.Currency);
             }
+            //throw new InvalidCurrencyException(Messages.MismatchedCurrency);
+            if (obj1.Currency.Equals("usd", StringComparison.CurrentCultureIgnoreCase))
+            {
+                var temp = obj1.Convert(obj2.Currency);
+                return new Money(temp.Amount + obj2.Amount, obj2.Currency);
+            }
             else
             {
-                throw new InvalidCurrencyException(Messages.MismatchedCurrency);
+                string notAvailable = "Currency Conversion from type from " + obj1.Currency + " to " + obj2.Currency + " not possible right now.";
+                throw new Exception(notAvailable);
             }
         }
 
         public override string ToString()
         {
-            return Amount + " " + Currency.ToUpper() ;
+            return Amount + " " + Currency.ToUpper();
         }
 
+        /// <summary>
+        /// Accepts a string of currency to be converted to.
+        /// </summary>
+        /// <param name="convertTo"></param>
+        /// <returns></returns>
         public Money Convert(string convertTo)
         {
-            double result;
-            result = new JSONParse().Conversion(Currency, convertTo);
-            return new Money(result*Amount, convertTo);
+            double result = FetchResult(Currency, convertTo);
+            return new Money(result * Amount, convertTo);
+        }
+
+        private Money Convert(string convertFrom, string convertTo)
+        {
+            double result = FetchResult(convertFrom, convertTo);
+            return new Money(result * Amount, convertTo);
+        }
+
+        private double FetchResult(string convertFrom, string convertTo)
+        {
+            return new CurrencyConvertor().Conversion(convertFrom, convertTo, "http://www.apilayer.net/api/live?access_key=a8f70a4d56dd71ef3d37065d7e3f3045&format=1");
         }
     }
 }

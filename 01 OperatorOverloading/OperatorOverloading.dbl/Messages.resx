@@ -129,8 +129,14 @@
   <data name="NoResults" xml:space="preserve">
     <value>"No Search Results Found For These Values!!!"</value>
   </data>
+  <data name="NotJson" xml:space="preserve">
+    <value>"InvalidData:The source file must be in JSON format or path is invalid."</value>
+  </data>
   <data name="NullInputs" xml:space="preserve">
     <value>"InvalidInputs: Input Values cannot be NULL!!"</value>
+  </data>
+  <data name="NullPath" xml:space="preserve">
+    <value>InvalidPath: Path cannot be NULL.</value>
   </data>
   <data name="TypeMismatch" xml:space="preserve">
     <value>"TypeMismatch: Unable to Convert the value or the response has been changed!!"</value>
