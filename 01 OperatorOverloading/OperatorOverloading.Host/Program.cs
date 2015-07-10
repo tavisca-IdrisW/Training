@@ -16,7 +16,7 @@ namespace OperatorOverloading.Host
                 Money amount2 = new Money(Console.ReadLine());
 
                 Console.Write("The Total Amount is: ");
-                Console.Write(amount1 + amount2);
+                Console.WriteLine(amount1 + amount2);
 
                 Console.Write("Enter Amount 3 (<Amt> CType): ");
                 Money amount3 = new Money(Console.ReadLine());

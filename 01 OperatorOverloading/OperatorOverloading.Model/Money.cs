@@ -94,7 +94,7 @@ namespace OperatorOverloading.Model
                 double totalAmount = obj1.Amount + obj2.Amount;
                 return new Money(totalAmount, obj1.Currency);
             }
-            //throw new InvalidCurrencyException(Messages.MismatchedCurrency);
+
             if (obj1.Currency.Equals("usd", StringComparison.CurrentCultureIgnoreCase))
             {
                 var temp = obj1.Convert(obj2.Currency);
@@ -102,8 +102,8 @@ namespace OperatorOverloading.Model
             }
             else
             {
-                string notAvailable = "Currency Conversion from type from " + obj1.Currency + " to " + obj2.Currency + " not possible right now.";
-                throw new Exception(notAvailable);
+                double exchangeRate = ExchangeRate(obj1.Currency, obj2.Currency);
+                return new Money(obj1.Amount * exchangeRate + obj2.Amount, obj2.Currency);
             }
         }
 
@@ -119,8 +119,21 @@ namespace OperatorOverloading.Model
         /// <returns></returns>
         public Money Convert(string convertTo)
         {
-            double result = FetchResult(Currency, convertTo);
-            return new Money(result * Amount, convertTo);
+            if (Currency.Equals("usd", StringComparison.CurrentCultureIgnoreCase))
+            {
+                double result = FetchResult(Currency, convertTo);
+                return new Money(result * Amount, convertTo);
+            }
+            else 
+            {
+                double exchangeRate = ExchangeRate(Currency, convertTo);
+                return new Money(exchangeRate * Amount, convertTo);
+            }
+        }
+
+        private static double ExchangeRate(string convertFrom, string convertTo)
+        {
+            return FetchResult("USD", convertTo) / FetchResult("USD", convertFrom);
         }
 
         private Money Convert(string convertFrom, string convertTo)
@@ -129,7 +142,7 @@ namespace OperatorOverloading.Model
             return new Money(result * Amount, convertTo);
         }
 
-        private double FetchResult(string convertFrom, string convertTo)
+        private static double FetchResult(string convertFrom, string convertTo)
         {
             return new CurrencyConvertor().Conversion(convertFrom, convertTo, "http://www.apilayer.net/api/live?access_key=a8f70a4d56dd71ef3d37065d7e3f3045&format=1");
         }

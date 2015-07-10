@@ -127,7 +127,7 @@
     <value>"InvalidResponse: Please Check teh response from URL!!"</value>
   </data>
   <data name="NoResults" xml:space="preserve">
-    <value>"No Search Results Found For These Values!!!"</value>
+    <value>"Unable to Convert Invalid or Unknown Currency!!!"</value>
   </data>
   <data name="NotJson" xml:space="preserve">
     <value>"InvalidData:The source file must be in JSON format or path is invalid."</value>

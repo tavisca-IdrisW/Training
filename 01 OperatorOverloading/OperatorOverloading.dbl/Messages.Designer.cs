@@ -88,7 +88,7 @@ namespace OperatorOverloading.dbl {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;No Search Results Found For These Values!!!&quot;.
+        ///   Looks up a localized string similar to &quot;Unable to Convert Invalid or Unknown Currency!!!&quot;.
         /// </summary>
         internal static string NoResults {
             get {
