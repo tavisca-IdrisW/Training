@@ -39,10 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ACurrencyConvertor.cs" />
     <Compile Include="FetchFromWeb.cs" />
     <Compile Include="FetchFromFile.cs" />
     <Compile Include="CurrencyConvertor.cs" />
-    <Compile Include="IParse.cs" />
+    <Compile Include="ICurrencyConvertor.cs" />
     <Compile Include="JSONParse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Messages.Designer.cs">

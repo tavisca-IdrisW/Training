@@ -2,7 +2,7 @@
 
 namespace OperatorOverloading.DBL
 {
-    public class CurrencyConvertor : IParse
+    public class CurrencyConvertor : ICurrencyConvertor
     {
         public CurrencyConvertor()
         {

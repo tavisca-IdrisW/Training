@@ -121,26 +121,26 @@ namespace OperatorOverloading.Model
         public Money Convert(string convertTo)
         {
             var currencyConvertor = Activator.CreateInstance("Asseb", "CurrencyConvertor") as IParse;
-            currencyConvertor.GetConversion("", "");
+            double exchangeRate = currencyConvertor.GetConversion("", "");
 
             //double exchangeRate = ExchangeRate(Currency, convertTo);
             return new Money(exchangeRate * Amount, convertTo);
         }
 
-        private static double ExchangeRate(string convertFrom, string convertTo)
-        {
-            return FetchResult("USD", convertTo) / FetchResult("USD", convertFrom);
-        }
+        //private static double ExchangeRate(string convertFrom, string convertTo)
+        //{
+        //    return FetchResult("USD", convertTo) / FetchResult("USD", convertFrom);
+        //}
 
-        private Money Convert(string convertFrom, string convertTo)
-        {
-            double result = FetchResult(convertFrom, convertTo);
-            return new Money(result * Amount, convertTo);
-        }
+        //private Money Convert(string convertFrom, string convertTo)
+        //{
+        //    double result = FetchResult(convertFrom, convertTo);
+        //    return new Money(result * Amount, convertTo);
+        //}
 
-        private static double FetchResult(string convertFrom, string convertTo)
-        {
-            return new CurrencyConvertor().Conversion(convertFrom, convertTo, "http://www.apilayer.net/api/live?access_key=a8f70a4d56dd71ef3d37065d7e3f3045&format=1");
-        }
+        //private static double FetchResult(string convertFrom, string convertTo)
+        //{
+        //    return new CurrencyConvertor().GetConversion(convertFrom, convertTo, "http://www.apilayer.net/api/live?access_key=a8f70a4d56dd71ef3d37065d7e3f3045&format=1");
+        //}
     }
 }
