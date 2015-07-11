@@ -2,7 +2,7 @@
 
 namespace OperatorOverloading.DBL
 {
-    public class JSONParse
+    public abstract class JSONParse
     {
         /// <summary>
         /// Returns the Exchange Rate after parsing JSON.  
@@ -14,7 +14,7 @@ namespace OperatorOverloading.DBL
         //TODO: Try teh file approach. Also read up on Tasks in C#. - IW
         //UPDATE: Don't try anyhthing new. Just do as you are told. - IW
 
-        public virtual double FetchRate(string jsonString, string searchString)
+        public double FetchRate(string jsonString, string searchString)
         {
             if (String.IsNullOrWhiteSpace(jsonString))
             {

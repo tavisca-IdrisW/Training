@@ -35,24 +35,7 @@ namespace OperatorOverloading.DBL
             // This may not be required here. Please Comment. 
             // Thanks -IW
 
-            return FetchResult(Json, searchString);
-        }
-
-        /// <summary>
-        /// Returns the Exchange Rate after parsing JSON.  
-        /// </summary>
-        /// <param name="jsonString"></param>
-        /// <param name="searchString"></param>
-        /// <returns>ExchangeRate</returns>
-
-        public override double FetchResult(string JSON, string searchString)
-        {
-            // Additional Code, if any, comes here.
-            // This is kinda of my whole point of using inheritance here. 
-            // This may not be required here. Please Comment. 
-            // Thanks -IW
-            double rate = base.FetchResult(JSON, searchString);
-            return rate;
+            return base.FetchRate(Json, searchString);
         }
     }
 }

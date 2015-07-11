@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Net;
-using OperatorOverloading.dbl;
+using OperatorOverloading.DBL;
 
 namespace OperatorOverloading.Model
 {
@@ -123,8 +123,8 @@ namespace OperatorOverloading.Model
             var currencyConvertor = Activator.CreateInstance("Asseb", "CurrencyConvertor") as IParse;
             currencyConvertor.GetConversion("", "");
 
-                double exchangeRate = ExchangeRate(Currency, convertTo);
-                return new Money(exchangeRate * Amount, convertTo);
+            //double exchangeRate = ExchangeRate(Currency, convertTo);
+            return new Money(exchangeRate * Amount, convertTo);
         }
 
         private static double ExchangeRate(string convertFrom, string convertTo)
