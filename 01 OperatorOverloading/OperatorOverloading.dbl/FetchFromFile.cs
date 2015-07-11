@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace OperatorOverloading.dbl
+namespace OperatorOverloading.DBL
 {
     class FetchFromFile : JSONParse
     {

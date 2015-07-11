@@ -95,16 +95,17 @@ namespace OperatorOverloading.Model
                 return new Money(totalAmount, obj1.Currency);
             }
 
-            if (obj1.Currency.Equals("usd", StringComparison.CurrentCultureIgnoreCase))
-            {
-                var temp = obj1.Convert(obj2.Currency);
-                return new Money(temp.Amount + obj2.Amount, obj2.Currency);
-            }
             else
             {
-                double exchangeRate = ExchangeRate(obj1.Currency, obj2.Currency);
-                return new Money(obj1.Amount * exchangeRate + obj2.Amount, obj2.Currency);
+                // Written better code for this on git. - IW
+                throw new InvalidCurrencyException(Messages.MismatchedCurrency);
             }
+
+            //else
+            //{
+            //    double exchangeRate = ExchangeRate(obj1.Currency, obj2.Currency);
+            //    return new Money(obj1.Amount * exchangeRate + obj2.Amount, obj2.Currency);
+            //}
         }
 
         public override string ToString()
@@ -119,16 +120,11 @@ namespace OperatorOverloading.Model
         /// <returns></returns>
         public Money Convert(string convertTo)
         {
-            if (Currency.Equals("usd", StringComparison.CurrentCultureIgnoreCase))
-            {
-                double result = FetchResult(Currency, convertTo);
-                return new Money(result * Amount, convertTo);
-            }
-            else 
-            {
+            var currencyConvertor = Activator.CreateInstance("Asseb", "CurrencyConvertor") as IParse;
+            currencyConvertor.GetConversion("", "");
+
                 double exchangeRate = ExchangeRate(Currency, convertTo);
                 return new Money(exchangeRate * Amount, convertTo);
-            }
         }
 
         private static double ExchangeRate(string convertFrom, string convertTo)

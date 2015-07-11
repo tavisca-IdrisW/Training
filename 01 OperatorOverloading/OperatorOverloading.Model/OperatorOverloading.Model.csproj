@@ -55,9 +55,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OperatorOverloading.dbl\OperatorOverloading.dbl.csproj">
+    <ProjectReference Include="..\OperatorOverloading.dbl\OperatorOverloading.DBL.csproj">
       <Project>{905ef29b-75cc-4bf5-a9e0-6b52a8ddfcf1}</Project>
-      <Name>OperatorOverloading.dbl</Name>
+      <Name>OperatorOverloading.DBL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

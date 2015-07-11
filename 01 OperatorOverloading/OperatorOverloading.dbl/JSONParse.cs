@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OperatorOverloading.dbl
+namespace OperatorOverloading.DBL
 {
     public class JSONParse
     {
@@ -12,8 +12,9 @@ namespace OperatorOverloading.dbl
         /// <returns>ExchangeRate</returns>
 
         //TODO: Try teh file approach. Also read up on Tasks in C#. - IW
+        //UPDATE: Don't try anyhthing new. Just do as you are told. - IW
 
-        public virtual double FetchResult(string jsonString, string searchString)
+        public virtual double FetchRate(string jsonString, string searchString)
         {
             if (String.IsNullOrWhiteSpace(jsonString))
             {
@@ -25,12 +26,14 @@ namespace OperatorOverloading.dbl
                 throw new Exception(Messages.NullInputs);
             }
 
+            // We will have keys of length 6 that will be containing teh conversion, 
+            // otherwise, just return not found. 
             if (searchString.Length != 6)
             {
                 throw new Exception(Messages.NoResults);
             }
             double rate = 0;
-            var keyArray = jsonString.Split('{', '}', ',', '[', ']');
+            var keyArray = jsonString.Split('{', '}', '[', ']');
             foreach (string str in keyArray)
             {
                 if (str.Contains(searchString))

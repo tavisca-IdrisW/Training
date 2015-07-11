@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OperatorOverloading.dbl
+namespace OperatorOverloading.DBL
 {
     public class CurrencyConvertor : IParse
     {
@@ -8,7 +8,7 @@ namespace OperatorOverloading.dbl
         {
         }
 
-        public double Conversion(string fromCurrency, string toCurrency, string path)
+        public double GetConversion(string fromCurrency, string toCurrency)
         {
             // Not checking for NULL on fromCurrency as the check is already done.
             // We get fromCurrency from an already existing Money object so the currecny 
@@ -20,25 +20,21 @@ namespace OperatorOverloading.dbl
                 throw new Exception(Messages.NullInputs);
             }
 
-            if (string.IsNullOrWhiteSpace(path))
-            {
-                throw new Exception(Messages.NullPath);
-            }
-
             double rate = 0;
             // Should add code for any existing type to any existing type.
             string searchString = fromCurrency.ToUpper() + toCurrency.ToUpper();
-            // Checkling if data is to be read from FILE or URL and call the Class appropriately. 
-            if (new Uri(path).IsFile)
-            {
-                var fetcherObj = new FetchFromFile(path);
-                rate = fetcherObj.FetchRate(searchString);
-            }
-            else
-            {
-                var fetcherObj = new FetchFromWeb(path);
-                rate = fetcherObj.FetchRate(searchString);
-            }
+            // Checkling if data is to be read from FILE or URL and call the Class appropriately.
+            // Do this in the Adapter to be made....
+            //if (new Uri(path).IsFile)
+            //{
+            //    var fetcherObj = new FetchFromFile(path);
+            //    rate = fetcherObj.FetchRate(searchString);
+            //}
+            //else
+            //{
+            //    var fetcherObj = new FetchFromWeb(path);
+            //    rate = fetcherObj.FetchRate(searchString);
+            //}
             if (rate < 0)
             {
                 throw new Exception(Messages.NoResults);

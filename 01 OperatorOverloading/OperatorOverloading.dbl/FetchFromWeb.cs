@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 
-namespace OperatorOverloading.dbl
+namespace OperatorOverloading.DBL
 {
     class FetchFromWeb : JSONParse
     {
@@ -14,6 +14,7 @@ namespace OperatorOverloading.dbl
             private set
             {
                 // To check if the recieved string is indeed in JSON format.
+                // TODO: Validation for value to be null...
                 if (value.Trim().Substring(0, 1).IndexOfAny(new[] { '[', '{' }) != 0)
                 {
                     throw new Exception(Messages.NotJson);
@@ -47,7 +48,7 @@ namespace OperatorOverloading.dbl
         public override double FetchResult(string JSON, string searchString)
         {
             // Additional Code, if any, comes here.
-            // This is kind of my whole point of using inheritance here. 
+            // This is kinda of my whole point of using inheritance here. 
             // This may not be required here. Please Comment. 
             // Thanks -IW
             double rate = base.FetchResult(JSON, searchString);

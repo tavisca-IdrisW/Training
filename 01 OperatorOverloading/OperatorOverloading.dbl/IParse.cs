@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace OperatorOverloading.dbl
+namespace OperatorOverloading.DBL
 {
-    interface IParse
+    public interface IParse
     {
-        double Conversion(string fromCurrency, string toCurrency, string path);
+        double GetConversion(string fromCurrency, string toCurrency);
     }
 }
