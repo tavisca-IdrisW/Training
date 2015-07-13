@@ -1,32 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WebServer
 {
     class FileHandler
     {
-        private string _contentPath;
+        private string _filePath {get; set;}
 
-        public FileHandler(string contentPath)
+        public string FilePath
         {
-            _contentPath = contentPath;
+            get 
+            {
+                return _filePath;
+            }
+            set
+            {
+                _filePath = value;
+            }
         }
 
-        internal bool DoesFileExists(string directory)
+        public FileHandler(string filePath)
         {
-            return File.Exists(_contentPath + directory);
+            FilePath = filePath;
+        }
+
+        internal bool FileExists(string directory)
+        {
+            return File.Exists(FilePath + directory);
         }
 
         internal byte[] ReadFile(string path)
         {
-            //return File.ReadAllBytes(path);
-
-            byte[] content = File.ReadAllBytes(_contentPath + path);
-            return content;
+            byte[] body = File.ReadAllBytes(_filePath + path);
+            return body;
         }
     }
 }

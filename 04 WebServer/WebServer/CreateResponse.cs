@@ -1,5 +1,5 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
+using Microsoft.Win32;
 using System.IO;
 using System.Net.Sockets;
 using System.Text;
@@ -22,21 +22,21 @@ namespace WebServer
             FileHandler = new FileHandler(_contentPath);
         }
 
-        public void RequestUrl(string requestedFile)
+        public void RequestUrl(string requestedFile)             //This is my DoGet method
         {
             int dotIndex = requestedFile.LastIndexOf('.') + 1;
             if (dotIndex > 0)
             {
-                if (FileHandler.DoesFileExists(requestedFile))    //If yes check existence of the file
+                if (FileHandler.FileExists(requestedFile))    //If yes check existence of the file
                     SendResponse(ClientSocket, FileHandler.ReadFile(requestedFile), "200 Ok", GetTypeOfFile(registryKey, (_contentPath + requestedFile)));
                 else
                     SendErrorResponce(ClientSocket);      // We don't support this extension.
             }
             else   //find default file as index .htm of index.html
             {
-                if (FileHandler.DoesFileExists("\\index.htm"))
+                if (FileHandler.FileExists("\\index.htm"))
                     SendResponse(ClientSocket, FileHandler.ReadFile("\\index.htm"), "200 Ok", "text/html");
-                else if (FileHandler.DoesFileExists("\\index.html"))
+                else if (FileHandler.FileExists("\\index.html"))
                     SendResponse(ClientSocket, FileHandler.ReadFile("\\index.html"), "200 Ok", "text/html");
                 else
                     SendErrorResponce(ClientSocket);
@@ -58,9 +58,11 @@ namespace WebServer
             return type;
         }
 
+
         private void SendErrorResponce(Socket clientSocket)
         {
-            SendResponse(clientSocket, null, "404 Not Found", "text/html");
+            byte[] emptyByteArray = new byte[0];
+            SendResponse(clientSocket, emptyByteArray, "404 Not Found", "text/html");
         }
 
 

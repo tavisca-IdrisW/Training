@@ -2,14 +2,15 @@
 
 namespace WebServer
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+       public static void Main(string[] args)
         {
             try
             {
-                Listener serverListener = new Listener(8080);
-                serverListener.Start();
+                Listener serverListener = new Listener(3030);
+                Console.WriteLine("Listening for request at port 3030 ");
+                serverListener.Run();
                 Console.ReadKey();
             }
             catch (Exception e)
