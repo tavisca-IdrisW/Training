@@ -97,15 +97,8 @@ namespace OperatorOverloading.Model
 
             else
             {
-                // Written better code for this on git. - IW
                 throw new InvalidCurrencyException(Messages.MismatchedCurrency);
             }
-
-            //else
-            //{
-            //    double exchangeRate = ExchangeRate(obj1.Currency, obj2.Currency);
-            //    return new Money(obj1.Amount * exchangeRate + obj2.Amount, obj2.Currency);
-            //}
         }
 
         public override string ToString()
@@ -120,8 +113,7 @@ namespace OperatorOverloading.Model
         /// <returns></returns>
         public Money Convert(string convertTo)
         {
-            var currencyConvertor = new CurrencyConvertor();
-            double exchangeRate = currencyConvertor.GetConversion(Currency, convertTo);
+            double exchangeRate = new CurrencyConvertor().GetConversion(Currency, convertTo);
 
             return new Money(exchangeRate * Amount, convertTo);
         }

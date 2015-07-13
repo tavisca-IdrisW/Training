@@ -40,9 +40,9 @@ namespace OperatorOverloading.DBL
             // This is kind of my whole point of using inheritance here. 
             // This may not be required here. Please Comment. 
             // Thanks -IW
-            Dictionary<string, string> rate = base.FetchRate(Json);
+            Dictionary<string, string> items = base.GetItems(Json);
 
-            return rate;
+            return items;
         }
     }
 }

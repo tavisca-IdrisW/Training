@@ -12,17 +12,15 @@ namespace OperatorOverloading.DBL
         /// <param name="searchString"></param>
         /// <returns>ExchangeRate</returns>
 
-        //TODO: Try teh file approach. Also read up on Tasks in C#. - IW
-        //UPDATE: Don't try anyhthing new. Just do as you are told. - IW
 
-        public Dictionary<string, string> FetchRate(string jsonString)
+        public Dictionary<string, string> GetItems(string jsonString)
         {
             if (String.IsNullOrWhiteSpace(jsonString))
             {
                 throw new Exception(Messages.InvalidResponse);
             }
 
-            Dictionary<string, string> rates = new Dictionary<string, string>();
+            Dictionary<string, string> items = new Dictionary<string, string>();
             var keyArray = jsonString.Split('{', '}', '[', ']');
             foreach (string str in keyArray)
             {
@@ -36,10 +34,10 @@ namespace OperatorOverloading.DBL
                     {
                         continue;
                     }
-                    rates.Add(jsonKeys[0], jsonKeys[1]);
+                    items.Add(jsonKeys[0], jsonKeys[1]);
                 }
             }
-            return rates;
+            return items;
         }
     }
 }
