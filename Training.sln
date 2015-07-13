@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 OperatorOverloading", "01 OperatorOverloading", "{38004B56-B211-448A-A796-E0AB3C6778A2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverloading.Host", "01 OperatorOverloading\OperatorOverloading.Host\OperatorOverloading.Host.csproj", "{2326F64C-97E2-45C0-8D6B-16E339B11105}"
@@ -10,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverloading.DBL", "01 OperatorOverloading\OperatorOverloading.dbl\OperatorOverloading.DBL.csproj", "{905EF29B-75CC-4BF5-A9E0-6B52A8DDFCF1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServer", "04 Webserver\WebServer\WebServer.csproj", "{CE5C9817-A4E0-44C5-BC80-240B8F855803}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 WebServer", "04 WebServer", "{10B924D0-450C-4DCB-A8CD-76256F68E045}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,5 +45,6 @@ Global
 		{2326F64C-97E2-45C0-8D6B-16E339B11105} = {38004B56-B211-448A-A796-E0AB3C6778A2}
 		{83DBE735-A2A9-45E7-BB7C-CCAFD5E13BD2} = {38004B56-B211-448A-A796-E0AB3C6778A2}
 		{905EF29B-75CC-4BF5-A9E0-6B52A8DDFCF1} = {38004B56-B211-448A-A796-E0AB3C6778A2}
+		{CE5C9817-A4E0-44C5-BC80-240B8F855803} = {10B924D0-450C-4DCB-A8CD-76256F68E045}
 	EndGlobalSection
 EndGlobal

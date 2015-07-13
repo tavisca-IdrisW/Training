@@ -15,6 +15,10 @@ namespace WebServer
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(requestString))
+                {
+                    return;
+                }
                 string[] tokens = requestString.Split(' ');
 
                 tokens[1] = tokens[1].Replace("/", "\\");
@@ -25,8 +29,11 @@ namespace WebServer
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
-                Console.WriteLine(ex.InnerException.Message);
-                Console.WriteLine("Bad Request!!");
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine(ex.InnerException.Message);
+                }
+                Console.WriteLine("Bad Request");
             }
         }
     }

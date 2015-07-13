@@ -12,28 +12,20 @@ namespace WebServer
     class Listener
     {
 
-        private TcpListener _listener;
-        private bool _running = false;
-
+        private TcpListener _listener {get; set;}
+        private bool _isRunning = false;
 
         public Listener(int port)
         {
             _listener = new TcpListener(IPAddress.Any, port);
         }
 
-        public void Start()
-        {
-            Thread serverThread = new Thread(new ThreadStart(Run));
-            serverThread.Start();
-        }
-
         public void Run()
         {
-            _running = true;
+            _isRunning = true;
             _listener.Start();
-            Console.WriteLine("Waiting for conection...");
-            Debug.WriteLine("Waiting for conection...");
-            while (_running)
+            Console.WriteLine(" ... and we're up ...");
+            while (_isRunning)
             {
                 if (_listener.Pending())
                 {
@@ -42,10 +34,9 @@ namespace WebServer
                     Dispatcher _dispatcher = new Dispatcher(clientSocket);
                     Thread dispatcherThread = new Thread(new ThreadStart(_dispatcher.HandleClient));
                     dispatcherThread.Start();
-                    //clientSocket.Close();
                 }
             }
-            _running = false;
+            _isRunning = false;
             _listener.Stop();
         }
 

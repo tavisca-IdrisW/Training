@@ -1,15 +1,15 @@
 ﻿using System;
+using System.Text;
 using System.Net.Sockets;
 using System.Threading;
 using System.Configuration;
-using System.Text;
 
 namespace WebServer
 {
     class Dispatcher
     {
-        private Socket _clientSocket = null; // use a queue later on
-
+        private Socket _clientSocket = null;
+        private static FactoryHandler handlerFactory = new FactoryHandler();
         public Dispatcher(Socket clientSocket)
         {
             _clientSocket = clientSocket;
@@ -18,20 +18,33 @@ namespace WebServer
         {
             var requestParser = new RequestParser();
             string requestString = DecodeRequest(_clientSocket);
-            requestParser.Parser(requestString);
-
-            Console.WriteLine(requestParser.HttpUrl);
-
-            if (requestParser.HttpMethod.Equals("get", StringComparison.InvariantCultureIgnoreCase))
+            if (string.IsNullOrWhiteSpace(requestString) == false)
             {
-                //TO DO: Select appropriate class for serving the received GET request.....
-                var createResponse = new CreateResponse(_clientSocket, ConfigurationManager.AppSettings["Path"]);
-                createResponse.RequestUrl(requestParser.HttpUrl);
-            }
-            else
-            {
-                Console.WriteLine("unimplemented methode");
-                Console.ReadLine();
+                requestParser.Parser(requestString);
+                Console.WriteLine(requestParser.HttpUrl);
+                int dotIndex = requestParser.HttpUrl.LastIndexOf('.') + 1;
+                if (dotIndex > 0)
+                {
+
+                    var requestHandler = handlerFactory.CreateHandler(requestParser.HttpUrl, _clientSocket, ConfigurationManager.AppSettings["Path"]);
+
+                    if (requestParser.HttpMethod.Equals("get", StringComparison.InvariantCultureIgnoreCase))
+                    {
+
+                        //  var createResponse = new CreateResponse(_clientSocket, ConfigurationManager.AppSettings["Path"]);
+                        requestHandler.DoGet(requestParser.HttpUrl);
+                    }
+                    else
+                    {
+                        Console.WriteLine("unimplemented methode");
+                        Console.ReadLine();
+                    }
+                }
+                else   //find default file as index .htm of index.html
+                {
+                    RequestHandler htmlRequestHandler = new RequestHandler(_clientSocket, ConfigurationManager.AppSettings["Path"]);
+                    htmlRequestHandler.DoGet(requestParser.HttpUrl);
+                }
             }
             StopClientSocket(_clientSocket);  //closes the connection
         }
@@ -58,8 +71,6 @@ namespace WebServer
             }
             return _charEncoder.GetString(buffer, 0, receivedBufferlen);
         }
-
-
 
     }
 }
