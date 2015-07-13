@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 
 namespace OperatorOverloading.DBL
@@ -28,14 +29,15 @@ namespace OperatorOverloading.DBL
             Json = new WebClient().DownloadString(path);
         }
 
-        public double FetchRate(string searchString)
+        public Dictionary<string, string> FetchRate()
         {
-            // This is method is defined to provede access to only those classes that
-            // that need or are getting the json. Otherwise there are chances taht the json can get changed somehow.
+            // Additional Code, if any, comes here.
+            // This is kind of my whole point of using inheritance here. 
             // This may not be required here. Please Comment. 
             // Thanks -IW
+            Dictionary<string, string> rate = base.FetchRate(Json);
 
-            return base.FetchRate(Json, searchString);
+            return rate;
         }
     }
 }

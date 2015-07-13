@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace OperatorOverloading.DBL
 {
@@ -22,24 +23,39 @@ namespace OperatorOverloading.DBL
 
             double rate = 0;
             // Should add code for any existing type to any existing type.
+
             string searchString = fromCurrency.ToUpper() + toCurrency.ToUpper();
-            // Checkling if data is to be read from FILE or URL and call the Class appropriately.
-            // Do this in the Adapter to be made....
-            //if (new Uri(path).IsFile)
-            //{
-            //    var fetcherObj = new FetchFromFile(path);
-            //    rate = fetcherObj.FetchRate(searchString);
-            //}
-            //else
-            //{
-            //    var fetcherObj = new FetchFromWeb(path);
-            //    rate = fetcherObj.FetchRate(searchString);
-            //}
-            if (rate < 0)
+            // We will have keys of length 6 that will be containing teh conversion, 
+            // otherwise, just return not found. 
+            if (searchString.Length != 6)
             {
                 throw new Exception(Messages.NoResults);
             }
-            return rate;
+
+            Dictionary<string, string> exchangeRates = new ACurrencyConvertor().GetRate();
+
+            foreach (var item in exchangeRates)
+            {
+                if (item.Key.Contains(searchString))
+                {
+                    if (double.TryParse(item.Value, out rate))
+                    {
+                        if (double.IsPositiveInfinity(rate))
+                        {
+                            throw new Exception(Messages.InvalidResult);
+                        }
+
+                        return rate;
+                    }
+
+                    else
+                    {
+                        throw new Exception(Messages.TypeMismatch);
+                    }
+                }
+            }
+
+            throw new Exception(Messages.NoResults);
         }
     }
 }

@@ -9,14 +9,14 @@ namespace OperatorOverloading.Host
         {
             try
             {
-                Console.Write("Enter Amount 1 (<Amt> CType): ");
-                Money amount1 = new Money(Console.ReadLine());
+                //Console.Write("Enter Amount 1 (<Amt> CType): ");
+                //Money amount1 = new Money(Console.ReadLine());
 
-                Console.Write("Enter Amount 2 (<Amt> CType): ");
-                Money amount2 = new Money(Console.ReadLine());
+                //Console.Write("Enter Amount 2 (<Amt> CType): ");
+                //Money amount2 = new Money(Console.ReadLine());
 
-                Console.Write("The Total Amount is: ");
-                Console.WriteLine(amount1 + amount2);
+                //Console.Write("The Total Amount is: ");
+                //Console.WriteLine(amount1 + amount2);
 
                 Console.Write("Enter Amount 3 (<Amt> CType): ");
                 Money amount3 = new Money(Console.ReadLine());

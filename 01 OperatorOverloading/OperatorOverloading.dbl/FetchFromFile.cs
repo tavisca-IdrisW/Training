@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace OperatorOverloading.DBL
@@ -33,18 +34,14 @@ namespace OperatorOverloading.DBL
         /// <param name="jsonString"></param>
         /// <param name="searchString"></param>
         /// <returns>ExchangeRate</returns>
-        public double FetchRate(string searchString)
-        {
-            return FetchResult(Json, searchString);
-        }
-
-        public override double FetchResult(string JSON, string searchString)
+        public Dictionary<string, string> FetchRate()
         {
             // Additional Code, if any, comes here.
             // This is kind of my whole point of using inheritance here. 
             // This may not be required here. Please Comment. 
             // Thanks -IW
-            double rate = base.FetchResult(JSON, searchString);
+            Dictionary<string, string> rate = base.FetchRate(Json);
+
             return rate;
         }
     }

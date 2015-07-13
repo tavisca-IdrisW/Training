@@ -88,7 +88,16 @@ namespace OperatorOverloading.DBL {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;Unable to Convert Invalid or Unknown Currency!!!&quot;.
+        ///   Looks up a localized string similar to &quot;Invalidrate: Rate is too large.&quot;.
+        /// </summary>
+        internal static string InvalidResult {
+            get {
+                return ResourceManager.GetString("InvalidResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;NoResultsFound: Unable to Convert Invalid or Unknown Currency!!!&quot;.
         /// </summary>
         internal static string NoResults {
             get {

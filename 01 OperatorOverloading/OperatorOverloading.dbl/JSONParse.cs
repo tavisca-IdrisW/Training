@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace OperatorOverloading.DBL
 {
@@ -14,46 +15,31 @@ namespace OperatorOverloading.DBL
         //TODO: Try teh file approach. Also read up on Tasks in C#. - IW
         //UPDATE: Don't try anyhthing new. Just do as you are told. - IW
 
-        public double FetchRate(string jsonString, string searchString)
+        public Dictionary<string, string> FetchRate(string jsonString)
         {
             if (String.IsNullOrWhiteSpace(jsonString))
             {
                 throw new Exception(Messages.InvalidResponse);
             }
 
-            if (String.IsNullOrWhiteSpace(searchString))
-            {
-                throw new Exception(Messages.NullInputs);
-            }
-
-            // We will have keys of length 6 that will be containing teh conversion, 
-            // otherwise, just return not found. 
-            if (searchString.Length != 6)
-            {
-                throw new Exception(Messages.NoResults);
-            }
-            double rate = 0;
+            Dictionary<string, string> rates = new Dictionary<string, string>();
             var keyArray = jsonString.Split('{', '}', '[', ']');
             foreach (string str in keyArray)
             {
-                if (str.Contains(searchString))
+                var keysArray = str.Split(',');
+                foreach (string mykey in keysArray)
                 {
-                    var resultArray = str.Split(':');
-                    if (double.TryParse(resultArray[1], out rate))
+                    var jsonKeys = mykey.Split(':');
+
+                    //2 as it should have key and value pair only. We continue and check more.
+                    if (jsonKeys.Length != 2)
                     {
-                        if (rate < 0 || double.IsPositiveInfinity(rate))
-                        {
-                            throw new Exception(Messages.InvalidRate);
-                        }
-                        return rate;
+                        continue;
                     }
-                    else
-                    {
-                        throw new Exception(Messages.TypeMismatch);
-                    }
+                    rates.Add(jsonKeys[0], jsonKeys[1]);
                 }
             }
-            return -1;
+            return rates;
         }
     }
 }

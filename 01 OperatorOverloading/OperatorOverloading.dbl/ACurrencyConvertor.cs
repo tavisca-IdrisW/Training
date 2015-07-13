@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 
 namespace OperatorOverloading.DBL
@@ -14,6 +15,23 @@ namespace OperatorOverloading.DBL
     /// </summary>
     public class ACurrencyConvertor
     {
-        //Adding the check for type of data  and appropriate action.
+        public Dictionary<string, string> GetRate()
+        {
+            Dictionary<string, string> rate;
+            string path = ConfigurationManager.AppSettings["url"];
+
+            if (new Uri(path).IsFile)
+            {
+                var fileObj = new FetchFromFile(path);
+                rate = fileObj.FetchRate();
+            }
+
+            else
+            {
+                var webObj = new FetchFromWeb(path);
+                rate = webObj.FetchRate();
+            }
+            return rate;
+        }
     }
 }
