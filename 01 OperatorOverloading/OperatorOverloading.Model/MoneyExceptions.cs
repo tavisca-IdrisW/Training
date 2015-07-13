@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Text;
+using System.Collections;
+using System.Globalization;
 using System.Runtime.Serialization;
 
 namespace OperatorOverloading.Model

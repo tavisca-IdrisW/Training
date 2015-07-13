@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net;
+using OperatorOverloading.DBL;
 
 namespace OperatorOverloading.Model
 {
@@ -37,12 +39,21 @@ namespace OperatorOverloading.Model
             }
         }
 
+        /// <summary>
+        /// Accepts Amount in double and a string for Currency Type.
+        /// </summary>
+        /// <param name="amount"></param>
+        /// <param name="currency"></param>
         public Money(double amount, string currency)
         {
             Amount = amount;
             Currency = currency;
         }
 
+        /// <summary>
+        /// Accepts a single input string in teh form "Amount Currency"
+        /// </summary>
+        /// <param name="inputAmount"></param>
         public Money(string inputAmount)
         {
 
@@ -77,11 +88,13 @@ namespace OperatorOverloading.Model
             {
                 throw new InvalidCurrencyException(Messages.NullValue);
             }
+
             if (obj1.Currency.Equals(obj2.Currency, StringComparison.CurrentCultureIgnoreCase))
             {
                 double totalAmount = obj1.Amount + obj2.Amount;
                 return new Money(totalAmount, obj1.Currency);
             }
+
             else
             {
                 throw new InvalidCurrencyException(Messages.MismatchedCurrency);
@@ -90,7 +103,19 @@ namespace OperatorOverloading.Model
 
         public override string ToString()
         {
-            return Amount + " " + Currency;
+            return Amount + " " + Currency.ToUpper();
+        }
+
+        /// <summary>
+        /// Accepts a string of currency to be converted to.
+        /// </summary>
+        /// <param name="convertTo"></param>
+        /// <returns></returns>
+        public Money Convert(string convertTo)
+        {
+            double exchangeRate = new CurrencyConvertor().GetConversion(Currency, convertTo);
+
+            return new Money(exchangeRate * Amount, convertTo);
         }
     }
 }
