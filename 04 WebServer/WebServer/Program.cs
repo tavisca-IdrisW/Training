@@ -9,7 +9,7 @@ namespace WebServer
             try
             {
                 Listener serverListener = new Listener(3030);
-                Console.WriteLine("Listening for request at port 3030 ");
+                Console.Write("Listening for request at port 3030 ");
                 serverListener.Run();
                 Console.ReadKey();
             }

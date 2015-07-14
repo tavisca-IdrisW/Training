@@ -12,27 +12,41 @@ namespace WebServer
         RegistryKey registryKey = Registry.ClassesRoot;
         public Socket ClientSocket = null;
         private Encoding _charEncoder = Encoding.UTF8;
-        private string _contentPath;
         public FileHandler FileHandler;
+
+        private string _filePath { get; set; }
+
+        public string FilePath
+        {
+            get
+            {
+                return _filePath;
+            }
+
+            set
+            {
+                _filePath = value;
+            }
+        }
 
         public CreateResponse(Socket clientSocket, string contentPath)
         {
-            _contentPath = contentPath;
+            FilePath = contentPath;
             ClientSocket = clientSocket;
-            FileHandler = new FileHandler(_contentPath);
+            FileHandler = new FileHandler(FilePath);
         }
 
-        public void RequestUrl(string requestedFile)             //This is my DoGet method
+        public void RequestUrl(string requestedFile)
         {
             int dotIndex = requestedFile.LastIndexOf('.') + 1;
             if (dotIndex > 0)
             {
-                if (FileHandler.FileExists(requestedFile))    //If yes check existence of the file
-                    SendResponse(ClientSocket, FileHandler.ReadFile(requestedFile), "200 Ok", GetTypeOfFile(registryKey, (_contentPath + requestedFile)));
+                if (FileHandler.FileExists(requestedFile))
+                    SendResponse(ClientSocket, FileHandler.ReadFile(requestedFile), "200 Ok", GetTypeOfFile(registryKey, (FilePath + requestedFile)));
                 else
-                    SendErrorResponce(ClientSocket);      // We don't support this extension.
+                    SendErrorResponce(ClientSocket);
             }
-            else   //find default file as index .htm of index.html
+            else
             {
                 if (FileHandler.FileExists("\\index.htm"))
                     SendResponse(ClientSocket, FileHandler.ReadFile("\\index.htm"), "200 Ok", "text/html");
@@ -66,13 +80,13 @@ namespace WebServer
         }
 
 
-        private void SendResponse(Socket clientSocket, byte[] byteContent, string responseCode, string contentType)
+        private void SendResponse(Socket clientSocket, byte[] body, string responseCode, string contentType)
         {
             try
             {
-                byte[] byteHeader = CreateHeader(responseCode, byteContent.Length, contentType);
-                clientSocket.Send(byteHeader);
-                clientSocket.Send(byteContent);
+                byte[] header = CreateHeader(responseCode, body.Length, contentType);
+                clientSocket.Send(header);
+                clientSocket.Send(body);
                 clientSocket.Close();
             }
             catch (Exception e)

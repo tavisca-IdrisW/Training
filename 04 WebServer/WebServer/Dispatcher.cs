@@ -30,23 +30,21 @@ namespace WebServer
 
                     if (requestParser.HttpMethod.Equals("get", StringComparison.InvariantCultureIgnoreCase))
                     {
-
-                        //  var createResponse = new CreateResponse(_clientSocket, ConfigurationManager.AppSettings["Path"]);
                         requestHandler.DoGet(requestParser.HttpUrl);
                     }
                     else
                     {
-                        Console.WriteLine("unimplemented methode");
+                        Console.WriteLine("Method Unimplemented");
                         Console.ReadLine();
                     }
                 }
-                else   //find default file as index .htm of index.html
+                else
                 {
                     RequestHandler htmlRequestHandler = new RequestHandler(_clientSocket, ConfigurationManager.AppSettings["Path"]);
                     htmlRequestHandler.DoGet(requestParser.HttpUrl);
                 }
             }
-            StopClientSocket(_clientSocket);  //closes the connection
+            StopClientSocket(_clientSocket);
         }
 
         public void StopClientSocket(Socket clientSocket)
@@ -66,7 +64,7 @@ namespace WebServer
             }
             catch (Exception)
             {
-                //Console.WriteLine("buffer full");
+                Console.WriteLine("Buffer full...");
                 Console.ReadLine();
             }
             return _charEncoder.GetString(buffer, 0, receivedBufferlen);

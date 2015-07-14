@@ -31,8 +31,8 @@ namespace WebServer
                 {
 
                     Socket clientSocket = _listener.AcceptSocket();
-                    Dispatcher _dispatcher = new Dispatcher(clientSocket);
-                    Thread dispatcherThread = new Thread(new ThreadStart(_dispatcher.HandleClient));
+                    Dispatcher dispatcher = new Dispatcher(clientSocket);
+                    Thread dispatcherThread = new Thread(new ThreadStart(dispatcher.HandleClient));
                     dispatcherThread.Start();
                 }
             }
