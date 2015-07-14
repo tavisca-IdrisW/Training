@@ -11,18 +11,33 @@ namespace WebServer
         RegistryKey registryKey = Registry.ClassesRoot;
         private Socket _clientSocket = null;
         private Encoding _charEncoder = Encoding.UTF8;
+        private int _errorCode { get; set; }
 
-        public ErrorHandler(Socket clientSocket)
+        public int ErrorCode
+        {
+            get
+            {
+                return _errorCode;
+            }
+
+            set
+            {
+                _errorCode = value;
+            }
+        }
+
+        public ErrorHandler(Socket clientSocket, int errorCode)
         {
             _clientSocket = clientSocket;
+            ErrorCode = errorCode;
         }
 
         private void SendResponse(Socket clientSocket, byte[] body, string responseCode, string contentType)
         {
             try
             {
-                byte[] byteHeader = CreateHeader(responseCode, body.Length, contentType);
-                clientSocket.Send(byteHeader);
+                byte[] header = CreateHeader(responseCode, body.Length, contentType);
+                clientSocket.Send(header);
                 clientSocket.Send(body);
                 clientSocket.Close();
             }
@@ -44,7 +59,17 @@ namespace WebServer
         public void DoGet(string uri)
         {
             byte[] noData = new byte[0];
-            SendResponse(_clientSocket, noData, "500 Internal server error", "text/html");
+            switch (ErrorCode) {
+                case 500:
+                    SendResponse(_clientSocket, noData, "500 Internal server error", "text/html");
+                    break;
+                case 415:
+                    SendResponse(_clientSocket, noData, "415 Media Unsupported.", "text/html");
+                    break;
+                default:
+                    SendResponse(_clientSocket, noData, "520 Unknown Error.", "text/html");
+                    break;
+            }
         }
 
         public void DoPost()

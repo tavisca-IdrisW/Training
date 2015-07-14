@@ -35,7 +35,7 @@ namespace WebServer
             }
             else
             {
-                requesterProcess = new ErrorHandler(clientSocket);
+                requesterProcess = new ErrorHandler(clientSocket, 415);
             }
             return requesterProcess;
         }
