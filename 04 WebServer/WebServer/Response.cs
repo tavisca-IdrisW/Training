@@ -6,7 +6,7 @@ using System.Text;
 
 namespace WebServer
 {
-    class CreateResponse
+    class Response
     {
 
         RegistryKey registryKey = Registry.ClassesRoot;
@@ -28,12 +28,9 @@ namespace WebServer
                 _filePath = value;
             }
         }
-
-        public CreateResponse(Socket clientSocket, string contentPath)
+        public Response(Socket clientSocket)
         {
-            FilePath = contentPath;
             ClientSocket = clientSocket;
-            FileHandler = new FileHandler(FilePath);
         }
 
         public void RequestUrl(string requestedFile)

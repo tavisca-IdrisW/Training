@@ -63,6 +63,9 @@ namespace WebServer
                 case 500:
                     SendResponse(_clientSocket, noData, "500 Internal server error", "text/html");
                     break;
+                case 404:
+                    SendResponse(_clientSocket, noData, "404 Media Empty or NOT Found.", "text/html");
+                    break;
                 case 415:
                     SendResponse(_clientSocket, noData, "415 Media Unsupported.", "text/html");
                     break;
