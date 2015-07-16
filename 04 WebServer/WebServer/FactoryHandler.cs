@@ -20,13 +20,7 @@ namespace WebServer
             }
         }
         public FactoryHandler()
-        {
-<<<<<<< HEAD
-            Extentions = ".html, .htm, .css, .js, .txt"; 
-=======
-            Extentions = ""; 
->>>>>>> 5af2b98d8de060aa9c31655d426b48e7d0b3043a
-        }
+        {        }
 
         public IProcesses CreateHandler(string url, Socket clientSocket, string path)
         {
@@ -35,11 +29,8 @@ namespace WebServer
 
             if (Extentions.Contains(urlExtention))
             {
-<<<<<<< HEAD
-                requesterProcess = new RequestHandler(clientSocket, path);
-=======
+
                 requesterProcess = new Request(clientSocket);
->>>>>>> 5af2b98d8de060aa9c31655d426b48e7d0b3043a
             }
             else
             {

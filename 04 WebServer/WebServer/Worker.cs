@@ -20,15 +20,20 @@ namespace WebServer
         {
             if (handler == null) throw new ArgumentException();
 
-            Response response;
             try
             {
-                response = handler.Process(this._request);
-                response.Status = Constants.STATUS_CODE_200;
+                Response response;
+                response = handler.Process((Request)_request);
+                response.Status = 200;
                 response.ReasonPhrase = "OK";
+                response.Send();
             }
 
-            response.Send();
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
         }
     }
 }

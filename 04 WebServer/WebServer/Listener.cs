@@ -11,8 +11,6 @@ namespace WebServer
 {
     class Listener
     {
-
-
         private TcpListener _listener;
         private bool _isRunning = false;
 

@@ -3,7 +3,7 @@ using System.IO;
 
 namespace WebServer
 {
-    class FileHandler
+    public class FileHandler
     {
         private string _filePath {get; set;}
 

@@ -12,6 +12,7 @@ namespace WebServer
                 Console.Write("Listening for request at port 3030 ");
                 serverListener.Run();
                 Console.ReadKey();
+                serverListener.Stop();
             }
             catch (Exception e)
             {

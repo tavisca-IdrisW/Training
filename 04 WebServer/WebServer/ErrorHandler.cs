@@ -6,9 +6,10 @@ using System.Text;
 
 namespace WebServer
 {
-    class ErrorHandler : IProcesses
+    public class ErrorHandler : IProcesses
     {
         RegistryKey registryKey = Registry.ClassesRoot;
+        public string File { get; set; }
         private Socket _clientSocket = null;
         private Encoding _charEncoder = Encoding.UTF8;
         private int _errorCode { get; set; }

@@ -13,11 +13,12 @@ using System.Threading.Tasks;
 
 namespace WebServer
 {
-    class Request : IProcesses
+    public class Request : IProcesses
     {
         private Dictionary<string, string> _headers { get; set; }
         RegistryKey registryKey = Registry.ClassesRoot;
         public Socket ClientSocket = null;
+        public string File { get; set; }
         private Encoding _charEncoder = Encoding.UTF8;
         private string _filePath = ConfigurationManager.AppSettings["path"];
         public FileHandler FHandle;

@@ -5,7 +5,7 @@ namespace WebServer
     public interface IProcesses
     {
 
-        public string File { get; private set; }
+        string File { get; set; }
         void DoGet(string uri);
         void DoPost();
     }

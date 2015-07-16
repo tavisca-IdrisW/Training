@@ -1,105 +1,78 @@
 ﻿using System;
-using Microsoft.Win32;
+using System.Collections.Generic;
 using System.IO;
-using System.Net.Sockets;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace WebServer
 {
-    class Response
+    public class Response
     {
 
-        RegistryKey registryKey = Registry.ClassesRoot;
-        public Socket ClientSocket = null;
-        private Encoding _charEncoder = Encoding.UTF8;
-        public FileHandler FileHandler;
-
-        private string _filePath { get; set; }
-
-        public string FilePath
+        public Response(IProcesses request)
         {
-            get
-            {
-                return _filePath;
-            }
+            if (request == null) throw new ArgumentException();
 
+            this.Body = new byte[] { };
+            Request = (Request)request;
+        }
+
+        private string _contentType = "text/html";
+
+        public Request Request { get; private set; }
+        public int Status { get; set; }
+        public string ReasonPhrase { get; set; }
+        public string ContentType
+        {
+            get { return _contentType; }
             set
             {
-                _filePath = value;
-            }
-        }
-        public Response(Socket clientSocket)
-        {
-            ClientSocket = clientSocket;
-        }
-
-        public void RequestUrl(string requestedFile)
-        {
-            int dotIndex = requestedFile.LastIndexOf('.') + 1;
-            if (dotIndex > 0)
-            {
-                if (FileHandler.FileExists(requestedFile))
-                    SendResponse(ClientSocket, FileHandler.ReadFile(requestedFile), "200 Ok", GetTypeOfFile(registryKey, (FilePath + requestedFile)));
-                else
-                    SendErrorResponce(ClientSocket);
-            }
-            else
-            {
-                if (FileHandler.FileExists("\\index.htm"))
-                    SendResponse(ClientSocket, FileHandler.ReadFile("\\index.htm"), "200 Ok", "text/html");
-                else if (FileHandler.FileExists("\\index.html"))
-                    SendResponse(ClientSocket, FileHandler.ReadFile("\\index.html"), "200 Ok", "text/html");
-                else
-                    SendErrorResponce(ClientSocket);
+                if (string.IsNullOrWhiteSpace(value)) return;
+                _contentType = value;
             }
         }
 
-        private string GetTypeOfFile(RegistryKey registryKey, string fileName)
-        {
-            RegistryKey fileClass = registryKey.OpenSubKey(Path.GetExtension(fileName));
-            string type = "";
-            try
-            {
-                type = fileClass.GetValue("Content Type").ToString();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            return type;
-        }
-
-
-        private void SendErrorResponce(Socket clientSocket)
-        {
-            byte[] emptyByteArray = new byte[0];
-            SendResponse(clientSocket, emptyByteArray, "404 Not Found", "text/html");
-        }
-
-
-        private void SendResponse(Socket clientSocket, byte[] body, string responseCode, string contentType)
+        public string Date { get { return DateTime.Now.ToString("ddd, dd MMM yyyy HH':'mm':'ss 'GMT'"); } }
+        public int ContentLength { get { return this.Body != null ? this.Body.Length : 0; } }
+        public byte[] Body { get; set; }
+        public void Send()
         {
             try
             {
-                byte[] header = CreateHeader(responseCode, body.Length, contentType);
-                clientSocket.Send(header);
-                clientSocket.Send(body);
-                clientSocket.Close();
+                byte[] bytes = GetBytes(BuildResponse());
+                var socket = Request.ClientSocket;
+                socket.Send(bytes);
+                socket.Close();
+                socket.Dispose();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine(ex.Message);
             }
         }
-
-        private byte[] CreateHeader(string responseCode, int contentLength, string contentType)
+        private string BuildResponse()
         {
-            return _charEncoder.GetBytes("HTTP/1.1 " + responseCode + "\r\n"
-                                  + "Server: Simple Web Server\r\n"
-                                  + "Content-Length: " + contentLength + "\r\n"
-                                  + "Connection: close\r\n"
-                                  + "Content-Type: " + contentType + "\r\n\r\n");
-        }
+            StringBuilder httpResponse = new StringBuilder();
 
+            httpResponse.Append(this.Status).Append(" ");
+            httpResponse.Append(this.ReasonPhrase).Append(" ");
+            httpResponse.Append("\r\n");
+
+            httpResponse.Append(this.Date);
+            httpResponse.Append("\r\n");
+            httpResponse.Append("Content-Type:").Append(this.ContentType);
+            httpResponse.Append("\r\n").Append("\r\n");
+            return httpResponse.ToString();
+        }
+        private byte[] GetBytes(string response)
+        {
+            var bytes = Encoding.UTF8.GetBytes(response);
+            var stream = new MemoryStream();
+            stream.Write(bytes, 0, bytes.Length);
+            if (this.Body != null)
+                stream.Write(this.Body, 0, this.Body.Length);
+            return stream.ToArray();
+        }
     }
 }
