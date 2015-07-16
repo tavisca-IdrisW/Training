@@ -1,74 +1,59 @@
 ﻿using System;
 using System.Text;
+using System.Linq;
 using System.Net.Sockets;
 using System.Threading;
 using System.Configuration;
+using System.Collections.Generic;
 
 namespace WebServer
 {
     class Dispatcher
     {
-        private Socket _clientSocket = null;
+        private static Dictionary<string, Type> _handlerMapping = new Dictionary<string, Type>();
+        static Dispatcher()
+        {
+            var type = typeof(IHandler);
+            var types = AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(s => s.GetTypes())
+                .Where(p => type.IsAssignableFrom(p) && p.IsClass);
+
+            types.ToList().ForEach(handlerType =>
+            {
+                var instance = Activator.CreateInstance(handlerType) as IHandler;
+                if (string.IsNullOrWhiteSpace(instance.SupportedTypes)) throw new ArgumentException("Invalid handler registered");
+                instance.SupportedTypes.Split(',').ToList().ForEach(fileType =>
+                {
+                    _handlerMapping[fileType.ToLower()] = handlerType;
+                });
+            });
+        }
+
+        private Socket _socket = null;
         private static FactoryHandler handlerFactory = new FactoryHandler();
-        public Dispatcher(Socket clientSocket)
+        public void Start(Socket socket)
         {
-            _clientSocket = clientSocket;
+            _socket = socket;
         }
-        public void HandleClient()
+        private void Dispatch(Socket socket)
         {
-            var requestParser = new RequestParser();
-            string requestString = DecodeRequest(_clientSocket);
-            if (string.IsNullOrWhiteSpace(requestString) == false)
+            IProcesses request;
+            if (string.IsNullOrEmpty(request.File))
             {
-                requestParser.Parser(requestString);
-                Console.WriteLine(requestParser.HttpUrl);
-                int dotIndex = requestParser.HttpUrl.LastIndexOf('.') + 1;
-                if (dotIndex > 0)
-                {
-
-                    var requestHandler = handlerFactory.CreateHandler(requestParser.HttpUrl, _clientSocket, ConfigurationManager.AppSettings["Path"]);
-
-                    if (requestParser.HttpMethod.Equals("get", StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        requestHandler.DoGet(requestParser.HttpUrl);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Method Unimplemented");
-                        Console.ReadLine();
-                    }
-                }
-                else
-                {
-                    RequestHandler htmlRequestHandler = new RequestHandler(_clientSocket, ConfigurationManager.AppSettings["Path"]);
-                    htmlRequestHandler.DoGet(requestParser.HttpUrl);
-                }
+                request = new ErrorHandler(socket, 404);
             }
-            StopClientSocket(_clientSocket);
-        }
-
-        public void StopClientSocket(Socket clientSocket)
-        {
-            if (clientSocket != null)
-                clientSocket.Close();
-        }
-
-        private string DecodeRequest(Socket clientSocket)
-        {
-            Encoding _charEncoder = Encoding.UTF8;
-            var receivedBufferlen = 0;
-            var buffer = new byte[10240];
-            try
+            else
             {
-                receivedBufferlen = clientSocket.Receive(buffer);
+                var handler = this.ResolveHandler(request.File);
+                new Worker(request).Process(handler);
             }
-            catch (Exception)
-            {
-                Console.WriteLine("Buffer full...");
-                Console.ReadLine();
-            }
-            return _charEncoder.GetString(buffer, 0, receivedBufferlen);
         }
 
+        private IHandler ResolveHandler(string extension)
+        {
+            if (_handlerMapping.ContainsKey(extension) == false) throw new Exception("Handler not found: Extension - " + extension);
+
+            return Activator.CreateInstance(_handlerMapping[extension]) as IHandler;
+        }
     }
 }

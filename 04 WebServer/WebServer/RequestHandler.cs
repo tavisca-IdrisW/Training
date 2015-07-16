@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace WebServer
 {
-    class RequestHandler : IProcesses
+    class Request : IProcesses
     {
         RegistryKey registryKey = Registry.ClassesRoot;
         public Socket ClientSocket = null;
@@ -31,9 +31,8 @@ namespace WebServer
             }
         }
 
-        public RequestHandler(Socket clientSocket, string path)
+        public Request(Socket clientSocket)
         {
-            FilePath = path;
             ClientSocket = clientSocket;
             FHandle = new FileHandler(FilePath);
         }

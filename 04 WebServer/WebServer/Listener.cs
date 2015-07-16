@@ -12,7 +12,7 @@ namespace WebServer
     class Listener
     {
 
-        private TcpListener _listener {get; set;}
+        private TcpListener _listener;
         private bool _isRunning = false;
 
         public Listener(int port)
@@ -24,20 +24,18 @@ namespace WebServer
         {
             _isRunning = true;
             _listener.Start();
-            Console.WriteLine(" ... and we're up ...");
             while (_isRunning)
             {
-                if (_listener.Pending())
-                {
-
-                    Socket clientSocket = _listener.AcceptSocket();
-                    Dispatcher dispatcher = new Dispatcher(clientSocket);
-                    Thread dispatcherThread = new Thread(new ThreadStart(dispatcher.HandleClient));
-                    dispatcherThread.Start();
-                }
+                Socket socket = _listener.AcceptSocket();
+                RequestQueue.Enqueue(socket);
             }
+
+        }
+
+        public void Stop()
+        {
             _isRunning = false;
-            _listener.Stop();
+            _listener.Stop();            
         }
 
     }

@@ -21,7 +21,7 @@ namespace WebServer
         }
         public FactoryHandler()
         {
-            Extentions = ".html, .htm, .css, .js, .txt"; 
+            Extentions = ""; 
         }
 
         public IProcesses CreateHandler(string url, Socket clientSocket, string path)
@@ -31,7 +31,7 @@ namespace WebServer
 
             if (Extentions.Contains(urlExtention))
             {
-                requesterProcess = new RequestHandler(clientSocket, path);
+                requesterProcess = new Request(clientSocket);
             }
             else
             {
