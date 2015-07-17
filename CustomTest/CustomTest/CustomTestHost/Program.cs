@@ -11,33 +11,45 @@ namespace CustomTestHost
     {
         public static void Main(string[] args)
         {
-            //Loads an assembly into the reflection-only context, where it can be examined but not executed.
             Assembly assembly = Assembly.Load(args[0]);
             List<string> ignored = new List<string>();
             List<string> tested = new List<string>();
-            if (args.Length == 2)
+            if (args.Length == 0 || args.Length > 2)
             {
-                foreach (Type type in assembly.GetTypes())
+                throw new Exception("Invalid Number of Command-line Arguments!!!");
+            }
+            foreach (Type type in assembly.GetTypes())
+            {
+                if (type.IsDefined(typeof(TestClass)))
                 {
-                    if (type.IsDefined(typeof(TestClass)))
+                    foreach (MethodInfo methInfo in type.GetMethods())
                     {
-                        foreach (MethodInfo methInfo in type.GetMethods())
-                        {
-                            var attrArray = methInfo.GetCustomAttributes();
+                        var attrArray = methInfo.GetCustomAttributes();
 
-                            if (methInfo.GetCustomAttributes(typeof(TestMethod), true).Any())
+                        //if (methInfo.GetCustomAttributes(typeof(TestMethod), true).Any())
+                        if (TestMethod.Exists(methInfo))
+                        {
+                            if (args.Length == 2)
                             {
-                                if (methInfo.GetCustomAttributes(typeof(Ignore), true).Any())
+                                //if (methInfo.GetCustomAttributes(typeof(TestCategory), true).Any())
+                                if (TestCategories.Exists(methInfo))
                                 {
-                                    ignored.Add(methInfo.Name);
-                                }
-                                else if (methInfo.GetCustomAttributes(typeof(TestCategory), true).Any())
-                                {
-                                    TestCategory attr = (Attribute)methInfo.GetCustomAttributes(typeof(TestCategory), true).FirstOrDefault() as TestCategory;
-                                    if (attr.Category.Equals(args[1], StringComparison.OrdinalIgnoreCase))
-                                        tested.Add(methInfo.Name);
-                                    else
+
+                                    //if (methInfo.GetCustomAttributes(typeof(Ignore), true).Any())
+                                    if (Ignore.Exists(methInfo))
+                                    {
                                         ignored.Add(methInfo.Name);
+                                        continue;
+                                    }
+
+                                    TestCategories attr = (Attribute)methInfo.GetCustomAttributes(typeof(TestCategories), true).FirstOrDefault() as TestCategories;
+
+                                    if (attr.Categories.ToUpper().Contains(args[1].ToUpper()))
+                                    {
+                                        tested.Add(methInfo.Name);
+                                    }
+                                    //else
+                                    //    ignored.Add(methInfo.Name);
 
                                 }
                                 else
@@ -45,34 +57,20 @@ namespace CustomTestHost
                                     ignored.Add(methInfo.Name);
                                 }
                             }
-
-                        }
-                    }
-                }
-            }
-            else
-            {
-                foreach (Type type in assembly.GetTypes())
-                {
-                    if (type.IsDefined(typeof(TestClass)))
-                    {
-                        foreach (MethodInfo methInfo in type.GetMethods())
-                        {
-                            var attrArray = methInfo.GetCustomAttributes();
-
-                            if (methInfo.GetCustomAttributes(typeof(TestMethod), true).Any())
+                            else
                             {
-                                if (methInfo.GetCustomAttributes(typeof(Ignore), true).Any())
+                                if (Ignore.Exists(methInfo))
                                 {
                                     ignored.Add(methInfo.Name);
+                                    continue;
                                 }
                                 else
                                 {
                                     tested.Add(methInfo.Name);
                                 }
                             }
-
                         }
+
                     }
                 }
             }

@@ -8,8 +8,8 @@ namespace CustomTest
     public class ClassA
     {
         [TestMethod]
-        [TestCategory("A")]
-        public void MethodShouldBeTested()
+        [TestCategories("A")]
+        public void MethodShouldBeTestedIfCategoryA()
         { }
 
         [Ignore]
@@ -17,13 +17,13 @@ namespace CustomTest
         { }
 
         [TestMethod]
-        [TestCategory("A")]
+        [TestCategories("A")]
         [Ignore]
         public void MethodShouldAlsoBeIgnored()
         { }
 
         [TestMethod]
-        [TestCategory("B")]     
+        [TestCategories("B")]     
         public void MethodShouldBeIgnoredIfCategoryIsA()
         { }
     }

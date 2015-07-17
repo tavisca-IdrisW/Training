@@ -1,14 +1,27 @@
 ﻿using System;
+using System.Reflection;
 
 namespace CustomAttributes
 {
-    public class TestCategory : Attribute
+    public class TestCategories : Attribute
     {
-        public string Category { get; set; }
+        public string Categories { get; set; }
 
-        public TestCategory(string category)
+        public TestCategories(string categories)
         {
-            Category = category;
+            Categories = categories;
+        }
+
+        public static bool Exists(MethodInfo type)
+        {
+            foreach (object attribute in type.GetCustomAttributes(true))
+            {
+                if (attribute is TestCategories)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

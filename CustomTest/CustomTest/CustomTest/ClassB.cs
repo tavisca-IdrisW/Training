@@ -7,7 +7,7 @@ namespace CustomTest
     class ClassB
     {
         [TestMethod]
-        public void MethodShouldBeInTested()
+        public void MethodShouldBeInTestedUnlessCategory()
         { }
 
         [TestMethod]
