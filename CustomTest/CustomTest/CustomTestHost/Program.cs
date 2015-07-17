@@ -3,7 +3,6 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Reflection;
 using CustomAttributes;
-using System.Globalization;
 
 namespace CustomTestHost
 {
@@ -38,7 +37,7 @@ namespace CustomTestHost
                                     //if (methInfo.GetCustomAttributes(typeof(Ignore), true).Any())
                                     if (Ignore.Exists(methInfo))
                                     {
-                                        ignored.Add(methInfo.Name);
+                                        ignored.Add(type.FullName + " " + methInfo.Name);
                                         continue;
                                     }
 
@@ -46,7 +45,7 @@ namespace CustomTestHost
 
                                     if (attr.Categories.ToUpper().Contains(args[1].ToUpper()))
                                     {
-                                        tested.Add(methInfo.Name);
+                                        tested.Add(type.FullName + " " + methInfo.Name);
                                     }
                                     //else
                                     //    ignored.Add(methInfo.Name);
@@ -54,19 +53,19 @@ namespace CustomTestHost
                                 }
                                 else
                                 {
-                                    ignored.Add(methInfo.Name);
+                                    ignored.Add(type.FullName + " " + methInfo.Name);
                                 }
                             }
                             else
                             {
                                 if (Ignore.Exists(methInfo))
                                 {
-                                    ignored.Add(methInfo.Name);
+                                    ignored.Add(type.FullName + " " + methInfo.Name);
                                     continue;
                                 }
                                 else
                                 {
-                                    tested.Add(methInfo.Name);
+                                    tested.Add(type.FullName + " " + methInfo.Name);
                                 }
                             }
                         }
