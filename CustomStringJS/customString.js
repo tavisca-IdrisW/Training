@@ -12,7 +12,7 @@ String.prototype.Substr = function (fromIndex, toIndex) {
   }
 
 
-  if(fromIndex > this.length - 2 || toIndex > this.length - 2 )
+  if(fromIndex > this.length || toIndex > this.length)
   {
     return { 
       name: "Exception", 
@@ -23,15 +23,25 @@ String.prototype.Substr = function (fromIndex, toIndex) {
     }
   }
 
-  for (var index = fromIndex ; index < toIndex; index++) {
-    newSubString += this[index];
+  console.log(fromIndex);
+  console.log(toIndex);
+  if (!toIndex || !fromIndex )
+  {
+    fromIndex = arguments[0];
+    toIndex = this.length;
   }
 
-  return newSubString;
+  var subString ="";
+  for (var index = fromIndex ; index < toIndex; index++) {
+    subString += this[index];
+  }
+
+  return subString;
 };
 
 String.prototype.Concat = function () {
   var appnedString = '';
+
   for (var index = 0; index < arguments.length; index++) {
     appnedString += arguments[index];
   }
