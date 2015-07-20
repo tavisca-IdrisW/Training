@@ -26,8 +26,8 @@ function start()
 
 function animateBall()
 {
-    maxXCoordinate = window.innerWidth-45;
-    maxYCoordinate = window.innerHeight-35;
+    maxXCoordinate = window.innerWidth-30;
+    maxYCoordinate = window.innerHeight-30;
     xCooridinate = parseInt(ball.style.left);
     yCoordinate = parseInt(ball.style.top); 
     xCooridinate+=addX;
