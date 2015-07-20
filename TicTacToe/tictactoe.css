@@ -1,0 +1,7 @@
+
+.cell{
+  width: 25px;
+  height: 25px;
+  border: 2px solid red;
+  vertical-align: center;
+}
