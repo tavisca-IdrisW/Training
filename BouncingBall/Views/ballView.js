@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 window.bouncingBall = window.bouncingBall || {};
 
@@ -20,27 +20,27 @@ window.bouncingBall.bBall = function(elementID, x, y) {
       var changeCoordinate = containerObj.bondaryCheck(xCooridinate, yCoordinate);
 
       //To check if X-limit(width) has been reached....
-      if (changeCoordinate.indexOf("changeX") > -1){
+      if (changeCoordinate.indexOf('changeX') > -1){
         addX = -addX;
       }
 
       //To check if Y-limit(height) has been reached....
-      if (changeCoordinate.indexOf("changeY") > -1){
+      if (changeCoordinate.indexOf('changeY') > -1){
         addY = -addY;
       }
 
       xCooridinate+= addX;
       yCoordinate+= addY;
 
-      ball.style.left = xCooridinate + "px";
-      ball.style.top = yCoordinate + "px";
+      ball.style.left = xCooridinate + 'px';
+      ball.style.top = yCoordinate + 'px';
     }
   };
 };
 
  var start = function() {
   var initialContainer = window.bouncingBall.containerView();
-  var newBall = window.bouncingBall.bBall("ball", 
+  var newBall = window.bouncingBall.bBall('ball', 
     Math.random()*(initialContainer.maxXCoordinate),
     Math.random()*(initialContainer.maxYCoordinate));
   

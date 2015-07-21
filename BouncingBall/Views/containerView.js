@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 window.bouncingBall = window.bouncingBall || {};
 
@@ -13,13 +13,13 @@ window.bouncingBall.containerView = function() {
     maxYCoordinate: maxYCoordinate,
     
     bondaryCheck: function(x, y) {
-      var check = "";
+      var check = '';
       if(x > maxXCoordinate || x < minXCoordinate) {
-        check = check + "changeX";
+        check = check + 'changeX';
       }
         
       if(y > maxYCoordinate || y < minYCoordinate) {
-        check = check + "changeY";
+        check = check + 'changeY';
       }
       return check;
     }
