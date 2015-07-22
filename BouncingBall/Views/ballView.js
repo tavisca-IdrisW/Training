@@ -9,15 +9,12 @@ window.bouncingBall.bBall = function(elementID, x, y) {
       yCoordinate = y,
       addX = 15,
       addY = 20;
-  
+
   return {
-    ball: ball,
-    xCooridinate: xCooridinate,
-    yCoordinate: yCoordinate,
     animateBall: function() {
 
-      var containerObj = window.bouncingBall.containerView();
-      var changeCoordinate = containerObj.bondaryCheck(xCooridinate, yCoordinate);
+      // var containerObj = window.bouncingBall.containerView();
+      var changeCoordinate = window.bouncingBall.containerObj.bondaryCheck(xCooridinate, yCoordinate);
 
       //To check if X-limit(width) has been reached....
       if (changeCoordinate.indexOf('changeX') > -1){
@@ -38,12 +35,30 @@ window.bouncingBall.bBall = function(elementID, x, y) {
   };
 };
 
+  /**
+  * Adding an event manager. Will manage events.
+  */
+  var addEvent = function(object, type, callback) {
+    if (object === null || typeof(object) == 'undefined') return;
+    if (object.addEventListener) {
+        object.addEventListener(type, callback, false);
+    } else if (object.attachEvent) {
+        object.attachEvent('on' + type, callback);
+    } else {
+        object['on'+type] = callback;
+    }
+  };
+
+  addEvent(window, 'resize', function(){
+    window.bouncingBall.containerObj.resetBoundary();
+  });
+
  var start = function() {
-  var initialContainer = window.bouncingBall.containerView();
-  var newBall = window.bouncingBall.bBall('ball', 
-    Math.random()*(initialContainer.maxXCoordinate),
-    Math.random()*(initialContainer.maxYCoordinate));
-  
+  window.bouncingBall.containerObj = window.bouncingBall.containerView();
+  var newBall = window.bouncingBall.bBall('ball',
+    Math.random()*(window.bouncingBall.containerObj.maxXCoordinate),
+    Math.random()*(window.bouncingBall.containerObj.maxYCoordinate));
+
   window.setInterval(newBall.animateBall,100);
 };
 

@@ -12,7 +12,12 @@ window.bouncingBall.containerView = function() {
     maxXCoordinate: maxXCoordinate,
     maxYCoordinate: maxYCoordinate,
     
-    bondaryCheck: function(x, y) {
+    resetBoundary: function() {
+      maxXCoordinate = window.innerWidth-40;
+      maxYCoordinate = window.innerHeight-45;
+    },
+
+     bondaryCheck: function(x, y) {
       var check = '';
       if(x > maxXCoordinate || x < minXCoordinate) {
         check = check + 'changeX';
