@@ -1,0 +1,114 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tavisca.EmployeeManagement", "Tavisca.EmployeeManagement\Tavisca.EmployeeManagement.csproj", "{E82BD259-75CA-42B0-B8DC-52D7E3839244}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Service", "2.Service", "{2434A031-021C-4310-AA85-FD6760CD2D19}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.BusinessLayer", "3.BusinessLayer", "{51BC865C-AFC3-4453-AB3E-9BDD4C259930}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.DataAccess", "4.DataAccess", "{AE8F439C-A7E8-4921-8623-5493534840BB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Host", "1.Host", "{7A74AC79-0929-43FD-AAE6-83D5AF0802E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tavisca.EmployeeManagement.ServiceContract", "Tavisca.EmployeeManagement.ServiceContract\Tavisca.EmployeeManagement.ServiceContract.csproj", "{58DCCB8F-FFAC-46CB-A2B4-8BE431ADAB57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tavisca.EmployeeManagement.DataContract", "Tavisca.EmployeeManagement.DataContract\Tavisca.EmployeeManagement.DataContract.csproj", "{02315215-8EFA-48EC-BA27-AB9FBF86224E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tavisca.EmployeeManagement.ServiceImpl", "Tavisca.EmployeeManagement.ServiceImpl\Tavisca.EmployeeManagement.ServiceImpl.csproj", "{2E29B00E-4CB6-4751-96E0-3B5CEBECA9D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tavisca.EmployeeManagement.Translator", "Tavisca.EmployeeManagement.Translator\Tavisca.EmployeeManagement.Translator.csproj", "{AB833D3B-F0D2-4286-A3F9-58E128AC35FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tavisca.EmployeeManagement.Model", "Tavisca.EmployeeManagement.Model\Tavisca.EmployeeManagement.Model.csproj", "{6AA6E0BF-C1F9-41EA-9E28-411F6DF962EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tavisca.EmployeeManagement.Interface", "Tavisca.EmployeeManagement.Interface\Tavisca.EmployeeManagement.Interface.csproj", "{473C6C04-74EF-4341-A090-87DDD73AC8D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tavisca.EmployeeManagement.BusinessLogic", "Tavisca.EmployeeManagement.BusinessLogic\Tavisca.EmployeeManagement.BusinessLogic.csproj", "{A6C3CF2C-F69E-48D2-B96C-6EB9CA05436C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tavisca.EmployeeManagement.EnterpriseLibrary", "Tavisca.EmployeeManagement.EnterpriseLibrary\Tavisca.EmployeeManagement.EnterpriseLibrary.csproj", "{F40C711D-95D8-4EC1-A6C0-761FB0AD0373}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tavisca.EmployeeManagement.FileStorage", "Tavisca.EmployeeManagement.FileSystemDAL\Tavisca.EmployeeManagement.FileStorage.csproj", "{92F06F5B-76B5-4005-B34F-C09129A3C897}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tavisca.EmployeeManagement.ErrorSpace", "Tavisca.EmployeeManagement.ErrorSpace\Tavisca.EmployeeManagement.ErrorSpace.csproj", "{7396F7D3-58A9-469E-92D6-50A26C4AF73C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.Tests", "5.Tests", "{98B50BFB-1E98-4B62-A443-7042DD24FA56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tavisca.EmployeeManagement.ServiceTests", "Tavisca.EmployeeManagement.ServiceTests\Tavisca.EmployeeManagement.ServiceTests.csproj", "{9F77F539-470F-4165-87FD-311D8AECE6CF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E82BD259-75CA-42B0-B8DC-52D7E3839244}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E82BD259-75CA-42B0-B8DC-52D7E3839244}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E82BD259-75CA-42B0-B8DC-52D7E3839244}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E82BD259-75CA-42B0-B8DC-52D7E3839244}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58DCCB8F-FFAC-46CB-A2B4-8BE431ADAB57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58DCCB8F-FFAC-46CB-A2B4-8BE431ADAB57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58DCCB8F-FFAC-46CB-A2B4-8BE431ADAB57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58DCCB8F-FFAC-46CB-A2B4-8BE431ADAB57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02315215-8EFA-48EC-BA27-AB9FBF86224E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02315215-8EFA-48EC-BA27-AB9FBF86224E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02315215-8EFA-48EC-BA27-AB9FBF86224E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02315215-8EFA-48EC-BA27-AB9FBF86224E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E29B00E-4CB6-4751-96E0-3B5CEBECA9D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E29B00E-4CB6-4751-96E0-3B5CEBECA9D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E29B00E-4CB6-4751-96E0-3B5CEBECA9D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E29B00E-4CB6-4751-96E0-3B5CEBECA9D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB833D3B-F0D2-4286-A3F9-58E128AC35FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB833D3B-F0D2-4286-A3F9-58E128AC35FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB833D3B-F0D2-4286-A3F9-58E128AC35FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB833D3B-F0D2-4286-A3F9-58E128AC35FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AA6E0BF-C1F9-41EA-9E28-411F6DF962EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AA6E0BF-C1F9-41EA-9E28-411F6DF962EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AA6E0BF-C1F9-41EA-9E28-411F6DF962EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AA6E0BF-C1F9-41EA-9E28-411F6DF962EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{473C6C04-74EF-4341-A090-87DDD73AC8D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{473C6C04-74EF-4341-A090-87DDD73AC8D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{473C6C04-74EF-4341-A090-87DDD73AC8D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{473C6C04-74EF-4341-A090-87DDD73AC8D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6C3CF2C-F69E-48D2-B96C-6EB9CA05436C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6C3CF2C-F69E-48D2-B96C-6EB9CA05436C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6C3CF2C-F69E-48D2-B96C-6EB9CA05436C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6C3CF2C-F69E-48D2-B96C-6EB9CA05436C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F40C711D-95D8-4EC1-A6C0-761FB0AD0373}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F40C711D-95D8-4EC1-A6C0-761FB0AD0373}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F40C711D-95D8-4EC1-A6C0-761FB0AD0373}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F40C711D-95D8-4EC1-A6C0-761FB0AD0373}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92F06F5B-76B5-4005-B34F-C09129A3C897}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92F06F5B-76B5-4005-B34F-C09129A3C897}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92F06F5B-76B5-4005-B34F-C09129A3C897}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92F06F5B-76B5-4005-B34F-C09129A3C897}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7396F7D3-58A9-469E-92D6-50A26C4AF73C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7396F7D3-58A9-469E-92D6-50A26C4AF73C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7396F7D3-58A9-469E-92D6-50A26C4AF73C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7396F7D3-58A9-469E-92D6-50A26C4AF73C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F77F539-470F-4165-87FD-311D8AECE6CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F77F539-470F-4165-87FD-311D8AECE6CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F77F539-470F-4165-87FD-311D8AECE6CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F77F539-470F-4165-87FD-311D8AECE6CF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E82BD259-75CA-42B0-B8DC-52D7E3839244} = {7A74AC79-0929-43FD-AAE6-83D5AF0802E2}
+		{58DCCB8F-FFAC-46CB-A2B4-8BE431ADAB57} = {2434A031-021C-4310-AA85-FD6760CD2D19}
+		{02315215-8EFA-48EC-BA27-AB9FBF86224E} = {2434A031-021C-4310-AA85-FD6760CD2D19}
+		{2E29B00E-4CB6-4751-96E0-3B5CEBECA9D1} = {2434A031-021C-4310-AA85-FD6760CD2D19}
+		{AB833D3B-F0D2-4286-A3F9-58E128AC35FE} = {2434A031-021C-4310-AA85-FD6760CD2D19}
+		{6AA6E0BF-C1F9-41EA-9E28-411F6DF962EA} = {51BC865C-AFC3-4453-AB3E-9BDD4C259930}
+		{473C6C04-74EF-4341-A090-87DDD73AC8D0} = {51BC865C-AFC3-4453-AB3E-9BDD4C259930}
+		{A6C3CF2C-F69E-48D2-B96C-6EB9CA05436C} = {51BC865C-AFC3-4453-AB3E-9BDD4C259930}
+		{F40C711D-95D8-4EC1-A6C0-761FB0AD0373} = {51BC865C-AFC3-4453-AB3E-9BDD4C259930}
+		{7396F7D3-58A9-469E-92D6-50A26C4AF73C} = {51BC865C-AFC3-4453-AB3E-9BDD4C259930}
+		{92F06F5B-76B5-4005-B34F-C09129A3C897} = {AE8F439C-A7E8-4921-8623-5493534840BB}
+		{9F77F539-470F-4165-87FD-311D8AECE6CF} = {98B50BFB-1E98-4B62-A443-7042DD24FA56}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.ExceptionHandling.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35;packages\Unity.Interception.2.1.505.2\lib\NET35;packages\EnterpriseLibrary.Common.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Caching.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.ExceptionHandling.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Logging.5.0.505.1\lib\NET35;packages\EnterpriseLibrary.Logging.5.0.505.0\lib\NET35
+	EndGlobalSection
+EndGlobal
