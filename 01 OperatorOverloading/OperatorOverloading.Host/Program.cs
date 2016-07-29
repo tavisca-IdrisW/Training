@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using OperatorOverloading.Model;
 
 namespace OperatorOverloading.Host
@@ -9,6 +9,7 @@ namespace OperatorOverloading.Host
         {
             try
             {
+			//Adding comment for changes.
                 //Console.Write("Enter Amount 1 (<Amt> CType): ");
                 //Money amount1 = new Money(Console.ReadLine());
 
