@@ -1,0 +1,3 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Tavisca.EmployeeManagement.ServiceImpl.EmployeeService" 
+    CodeBehind="Tavisca.EmployeeManagement.ServiceImpl" 
+    Factory="Tavisca.EmployeeManagement.EnterpriseLibrary.Unity.UnityServiceHostFactory"%>

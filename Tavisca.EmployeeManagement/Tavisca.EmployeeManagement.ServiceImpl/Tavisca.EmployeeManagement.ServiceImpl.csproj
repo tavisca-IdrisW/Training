@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2E29B00E-4CB6-4751-96E0-3B5CEBECA9D1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tavisca.EmployeeManagement.ServiceImpl</RootNamespace>
+    <AssemblyName>Tavisca.EmployeeManagement.ServiceImpl</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EmployeeManagementService.cs" />
+    <Compile Include="EmployeeService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tavisca.EmployeeManagement.DataContract\Tavisca.EmployeeManagement.DataContract.csproj">
+      <Project>{02315215-8efa-48ec-ba27-ab9fbf86224e}</Project>
+      <Name>Tavisca.EmployeeManagement.DataContract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tavisca.EmployeeManagement.EnterpriseLibrary\Tavisca.EmployeeManagement.EnterpriseLibrary.csproj">
+      <Project>{f40c711d-95d8-4ec1-a6c0-761fb0ad0373}</Project>
+      <Name>Tavisca.EmployeeManagement.EnterpriseLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tavisca.EmployeeManagement.Interface\Tavisca.EmployeeManagement.Interface.csproj">
+      <Project>{473c6c04-74ef-4341-a090-87ddd73ac8d0}</Project>
+      <Name>Tavisca.EmployeeManagement.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tavisca.EmployeeManagement.Model\Tavisca.EmployeeManagement.Model.csproj">
+      <Project>{6aa6e0bf-c1f9-41ea-9e28-411f6df962ea}</Project>
+      <Name>Tavisca.EmployeeManagement.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tavisca.EmployeeManagement.ServiceContract\Tavisca.EmployeeManagement.ServiceContract.csproj">
+      <Project>{58dccb8f-ffac-46cb-a2b4-8be431adab57}</Project>
+      <Name>Tavisca.EmployeeManagement.ServiceContract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tavisca.EmployeeManagement.Translator\Tavisca.EmployeeManagement.Translator.csproj">
+      <Project>{ab833d3b-f0d2-4286-a3f9-58e128ac35fe}</Project>
+      <Name>Tavisca.EmployeeManagement.Translator</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
